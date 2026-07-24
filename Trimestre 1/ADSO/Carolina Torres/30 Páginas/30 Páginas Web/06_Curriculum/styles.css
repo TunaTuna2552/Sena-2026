@@ -1,0 +1,46 @@
+body { 
+	background-color: #C8C8C8;
+	font-family: "Century Gothic";
+	line-height: 1.6; 
+	color: #333; 
+	padding: 20px;
+}
+header { 
+	background-color: white;
+	padding: 10px; 
+	display: flex;
+	gap: 35px;
+}
+.img_ava {
+	width: 15%;
+}
+h2 {
+	border-left: 5px solid #668cff; 
+	padding-left: 25px;
+}
+a {
+	text-decoration: none;
+	color: #668cff;
+}
+.exp_for {
+	display: flex; 
+}
+.experiencia {
+	background-color: #e6ecff;
+	flex: 1;
+	padding: 30px;
+}
+.formacion {
+	background-color: #ccddff;
+	flex: 1;
+	padding: 30px;
+}
+p {
+	padding:10px;
+}
+footer { 
+	background-color: white;
+	color: #777; 
+	text-align: center;
+	padding: 20px;
+}

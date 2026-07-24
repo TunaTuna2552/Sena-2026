@@ -1,0 +1,38 @@
+:root {
+  --degradado: linear-gradient(rgba(102, 16, 242, 0.7), rgba(0, 0, 0, 0.8));
+  --color-principal: #6610f2; /* Indigo */
+  --color-hover: #520dc2;     /* Indigo más oscuro para interacciones */
+  --color-suave: #e0d0ff;    /* Versión clara para fondos */
+  --color-fondo-suave: #f8f9fa;
+}
+
+.hero {
+    min-height: 85vh;
+    /* Degradado con tono violeta traslúcido */
+    background: var(--degradado), 
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72");
+    background-size: cover;
+    background-position: center;
+}
+
+.btn-primary {
+    background-color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-hover) !important;
+    border-color: var(--color-hover) !important;
+}
+
+/* Estilos para los botones de contorno (Outline) */
+.btn-outline-primary {
+    color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-principal) !important;
+    color: white !important;
+    border-color: var(--color-principal) !important;
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "marca": "BMW",
+    "precio": 200000000,
+    "color": "Azul",
+    "modelo": 2021
+  }
+]

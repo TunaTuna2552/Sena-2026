@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo LocalStorage ADSO</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <span class="navbar-brand fw-bold">Clientes ADSO</span>
+      <button id="btnTema" class="btn btn-outline-light btn-sm">
+        Modo oscuro
+      </button>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+
+    <div class="row g-4">
+
+      <!-- FORMULARIO -->
+      <div class="col-md-5">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="fw-bold mb-3">Registrar cliente</h4>
+
+            <form id="formCliente">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" id="nombre" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Correo</label>
+                <input type="email" id="correo" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Empresa</label>
+                <input type="text" id="empresa" class="form-control">
+              </div>
+
+              <button class="btn btn-primary w-100">
+                Guardar cliente
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA -->
+      <div class="col-md-7">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="fw-bold mb-3">Clientes registrados</h4>
+
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Empresa</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaClientes"></tbody>
+              </table>
+            </div>
+
+            <button id="btnLimpiar" class="btn btn-danger btn-sm">
+              Borrar todos
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

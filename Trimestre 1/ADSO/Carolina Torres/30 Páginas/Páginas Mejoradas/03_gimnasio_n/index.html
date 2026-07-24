@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Maniac | Official Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <button id="modo-btn" class="btn-m">Modo</button>
+        <img src="logo.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#staff">Staff</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+        <div class="hero-txt">
+            <h1>ENTRENA COMO UN <span>MANIACO</span></h1>
+            <p>El templo del fitness en Mosquera. Tecnología de punta y los mejores del país.</p>
+            <a href="#planes" class="btn-a">¡EMPIEZA HOY!</a>
+        </div>
+    </section>
+    
+    <main>
+        <!-- SERVICIOS -->
+        <section id="servicios">
+            <h2 class="tit">NUESTROS SERVICIOS</h2>
+            <div class="grid">
+                <div class="caja">
+                    <h3>Pesas Pro</h3>
+                    <p>Maquinaria Hammer Strength y peso libre de alta gama.</p>
+                </div>
+                <div class="caja">
+                    <h3>Zona Cardio</h3>
+                    <p>Caminadoras inteligentes con pantallas 4K.</p>
+                </div>
+                <div class="caja">
+                    <h3>Cross Training</h3>
+                    <p>Zona funcional de alta intensidad para retos extremos.</p>
+                </div>
+                <div class="caja">
+                    <h3>Relax & Spa</h3>
+                    <p>Sauna y zonas húmedas para tu recuperación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORARIOS -->
+        <section id="horarios">
+            <h2 class="tit">HORARIOS DE <span>PODER</span></h2>
+            <p class="sub">Jornadas diseñadas para que tu ritmo de vida nunca sea una excusa.</p>
+            <div class="grid">
+                <div class="caja-h">
+                    <h3>MAÑANA</h3>
+                    <div class="linea"></div>
+                    <p class="hora">05:00 - 12:00</p>
+                    <p class="txt">Activa tu metabolismo. Ambiente de disciplina absoluta.</p>
+                    <ul class="lista-h">
+                        <li>Yoga & Cardio</li>
+                        <li>Sin esperas</li>
+                    </ul>
+                </div>
+                <div class="caja-h vip-card">
+                    <h3>TARDE</h3>
+                    <div class="linea"></div>
+                    <p class="hora">13:00 - 18:00</p>
+                    <p class="txt">Entrenamiento profundo y técnica personalizada.</p>
+                    <ul class="lista-h">
+                        <li>Asesoría 1 a 1</li>
+                        <li>Boxeo libre</li>
+                    </ul>
+                </div>
+                <div class="caja-h">
+                    <h3>NOCHE</h3>
+                    <div class="linea"></div>
+                    <p class="hora">18:00 - 23:00</p>
+                    <p class="txt">Máxima energía y la comunidad más potente.</p>
+                    <ul class="lista-h">
+                        <li>Cross-Training</li>
+                        <li>Zona Húmeda</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANES (INFO COMPLETA) -->
+        <section id="planes">
+            <h2 class="tit">MEMBRESÍAS</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>PLAN LIFE</h3>
+                    <p class="resalte">ANUAL 50%Off</p>
+                    <div class="precio">$76.900 <span>/ mes</span></div>
+                    <p class="cond">Sin afiliación ni mantenimiento<br>Con permanencia (12 meses)</p>
+                    <ul class="lista-p">
+                        <li>30 días obsequio (mes 13)</li>
+                        <li>Dos congelaciones (40 días total)</li>
+                        <li>Una clase con entrenador (mes 3)</li>
+                        <li>2 bonos invitados por 10 días c/u</li>
+                        <li>Acceso a todas las zonas y clases</li>
+                        <li>Zona Húmeda – Sauna</li>
+                        <li>3 valoraciones gratis</li>
+                        <li>APP virtual y WiFi</li>
+                    </ul>
+                    <button class="btn-p" data-plan="Life">ELEGIR</button>
+                </article>
+
+                <article class="card vip-card">
+                    <div class="tag">POPULAR</div>
+                    <h3>BLACK VIP</h3>
+                    <p class="resalte">LIBERTAD TOTAL</p>
+                    <div class="precio">$99.900 <span>/ mes</span></div>
+                    <p class="cond">Sin afiliación ni mantenimiento<br><strong>Sin permanencia</strong></p>
+                    <ul class="lista-p">
+                        <li>Sin multas por retiro anticipado</li>
+                        <li>Acceso VIP a todas las sedes</li>
+                        <li>Valoración nutricional mensual</li>
+                        <li>4 Pases para invitados por mes</li>
+                        <li>Toalla y Kit de bienvenida</li>
+                        <li>Red WiFi Premium</li>
+                    </ul>
+                    <button class="btn-p" data-plan="VIP">ELEGIR</button>
+                </article>
+
+                <article class="card">
+                    <h3>ANUAL PRO</h3>
+                    <p class="resalte">PAGO ÚNICO</p>
+                    <div class="precio">$659.800 <span>/ año</span></div>
+                    <p class="cond">Afiliación gratis web<br>Sin permanencia</p>
+                    <ul class="lista-p">
+                        <li>30 días adicionales de regalo</li>
+                        <li>40 días de congelación</li>
+                        <li>6 bonos invitados por 8 días c/u</li>
+                        <li>Acceso a todas las zonas y clases</li>
+                        <li>Zona de duchas y Sauna</li>
+                        <li>8 valoraciones gratis</li>
+                        <li>Acceso virtual y WiFi</li>
+                    </ul>
+                    <button class="btn-p" data-plan="Anual">ELEGIR</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- STAFF -->
+        <section id="staff">
+            <h2 class="tit">STAFF PROFESIONAL</h2>
+            <div class="grid-s">
+                <div class="pro"><img src="entrenador_1.jpg"><h3>Juanito</h3><p>Powerlifting</p></div>
+                <div class="pro"><img src="entrenador_2.jpg"><h3>CBUM</h3><p>Culturismo</p></div>
+                <div class="pro"><img src="entrenador_3.jpg"><h3>Thor</h3><p>Fuerza</p></div>
+                <div class="pro"><img src="entrenador_4.jpg"><h3>Wolverine</h3><p>HIIT</p></div>
+                <div class="pro"><img src="entrenador_5.jpg"><h3>Superman</h3><p>Élite</p></div>
+                <div class="pro"><img src="entrenador_6.jpg"><h3>Hulk</h3><p>Masa</p></div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+            <h2 class="tit">ÚNETE A LA MANÍA</h2>
+            <div class="c-flex">
+                <form id="form" class="form">
+                    <input type="text" id="nombre" placeholder="Nombre" required>
+                    <input type="email" placeholder="Correo" required>
+                    <textarea id="meta" placeholder="Tus metas..." rows="5"></textarea>
+                    <button type="submit" class="btn-a">ENVIAR</button>
+                </form>
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15905.603457902309!2d-74.2296709!3d4.70021735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f770c7331b875%3A0x61690466aa92f49b!2sSmart%20Fit%20Metro%20Mosquera!5e0!3m2!1ses-419!2sco!4v1775488849684!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>📍 Kilómetro 7, Mosquera | 📞 15462323</p>
+        <p>&copy; 2026 Gym Maniac. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

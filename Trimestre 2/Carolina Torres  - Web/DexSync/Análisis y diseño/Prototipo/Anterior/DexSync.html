@@ -1,0 +1,1490 @@
+
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DexSync — Prótesis Robótica Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dx: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards',
+                        'slide-in': 'slideIn 0.35s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.92)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(16px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        select { background-image: none; }
+
+        /* Galería lightbox */
+        .gallery-thumb { cursor: zoom-in; }
+        .gallery-thumb:hover img { transform: scale(1.05); }
+
+        /* Simulador 3D — deslizadores */
+        .sim-slider { background: linear-gradient(to right, #0284c7 0%, #0284c7 0%, #e2e8f0 0%, #e2e8f0 100%); }
+        .sim-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: #0284c7;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+        .sim-slider::-moz-range-thumb {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: #0284c7;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-700 antialiased">
+
+    <!-- ══════════════════════════════════════
+         NAVBAR — HU5: Navegación fácil entre secciones
+                  RNF2: Menú de navegación
+         ══════════════════════════════════════ -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#inicio" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-dx-600 flex items-center justify-center">
+                    <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                </div>
+                <span class="text-[15px] font-extrabold tracking-wide text-slate-900">Dex<span class="text-dx-600">Sync</span></span>
+            </a>
+
+            <!-- Nav Desktop -->
+            <nav class="hidden lg:flex items-center gap-1">
+                <a href="#inicio" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Inicio</a>
+                <a href="#informacion" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Información</a>
+                <a href="#beneficios" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Beneficios</a>
+                <a href="#galeria" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Galería</a>
+                <a href="#noticias" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Noticias</a>
+                <a href="#contacto" class="px-3.5 py-2 text-[13px] font-medium text-slate-500 hover:text-dx-600 rounded-lg hover:bg-slate-50 transition-all">Contacto</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2.5">
+                <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-dx-600 hover:bg-dx-700 text-white text-[13px] font-semibold rounded-xl transition-colors">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    Contactar
+                </a>
+                <button onclick="UI.toggleMobile()" class="lg:hidden p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all" aria-label="Menú">
+                    <i data-lucide="menu" class="w-[18px] h-[18px] text-slate-500"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav — HU6: Uso desde celular / RNF3: Diseño adaptable -->
+        <div id="mobile-menu" class="lg:hidden hidden border-t border-slate-100 bg-white">
+            <div class="p-4 space-y-1">
+                <a href="#inicio" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Inicio</a>
+                <a href="#informacion" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Información</a>
+                <a href="#beneficios" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Beneficios</a>
+                <a href="#galeria" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Galería</a>
+                <a href="#noticias" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Noticias</a>
+                <a href="#contacto" onclick="UI.toggleMobile()" class="block px-4 py-3 text-sm text-slate-600 hover:text-dx-600 hover:bg-slate-50 rounded-xl transition-all">Contacto</a>
+                <div class="pt-3">
+                    <a href="#contacto" onclick="UI.toggleMobile()" class="flex items-center justify-center gap-2 w-full py-3 bg-dx-600 text-white text-sm font-semibold rounded-xl">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Contactar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ══════════════════════════════════════
+         HERO — HU1: Información general de la prótesis
+                RF1: Mostrar información general
+         ══════════════════════════════════════ -->
+    <section id="inicio" class="min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-dx-100/50 rounded-full blur-[120px] -translate-y-1/4 translate-x-1/4"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-0 w-full">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+                <!-- Texto principal -->
+                <div class="space-y-7">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-dx-200 bg-dx-50 animate-fade-up" style="animation-delay:0.1s;opacity:0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-dx-500"></span>
+                        <span class="text-[11px] font-semibold tracking-wide text-dx-700 uppercase">Prótesis Robótica Inteligente</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.1] tracking-tight text-slate-900 animate-fade-up" style="animation-delay:0.2s;opacity:0">
+                        Tecnología que se adapta a <span class="text-dx-600">tu movimiento.</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-500 max-w-xl leading-relaxed animate-fade-up" style="animation-delay:0.3s;opacity:0">
+                        DexSync es una prótesis robótica de miembro superior que utiliza sensores mioeléctricos para interpretar las señales musculares del usuario, ofreciendo un control natural e intuitivo de cada movimiento.
+                    </p>
+
+                    <!-- Datos clave -->
+                    <div class="grid grid-cols-3 gap-5 max-w-sm animate-fade-up" style="animation-delay:0.4s;opacity:0">
+                        <div>
+                            <p class="text-2xl font-extrabold text-slate-900">24</p>
+                            <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Patrones de agarre</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold text-dx-600">18h</p>
+                            <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Autonomía</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold text-slate-900">385g</p>
+                            <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Peso total</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 animate-fade-up" style="animation-delay:0.5s;opacity:0">
+                        <a href="#informacion" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-dx-600 hover:bg-dx-700 text-white font-semibold rounded-xl transition-colors">
+                            <i data-lucide="info" class="w-4 h-4"></i>
+                            Conocer más
+                        </a>
+                        <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-slate-200 text-slate-600 hover:text-dx-600 hover:border-dx-300 font-semibold rounded-xl transition-all">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Enviar consulta
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Imagen hero de la prótesis — HU9: Ver imágenes de la prótesis -->
+                <div class="animate-fade-up relative" style="animation-delay:0.35s;opacity:0">
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center relative">
+                        <img src="https://es.gizmodo.com/app/uploads/2025/01/Diseno-sin-titulo-24-17.jpg" alt="Prótesis robótica DexSync" class="w-full h-full object-cover" loading="eager">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 border border-slate-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-dx-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="cpu" class="w-4 h-4 text-dx-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900">DexSync Prosthetic</p>
+                                    <p class="text-[11px] text-slate-500">Control mioeléctrico · Titanio Grado 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         INFORMACIÓN GENERAL — HU1: Información general
+                                RF1, RF3: Características de la prótesis
+         ══════════════════════════════════════ -->
+    <section id="informacion" class="py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50">
+                    <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Descripción del producto</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">¿Qué es DexSync?</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">Toda la información que necesitas conocer sobre el funcionamiento y las características técnicas de nuestra prótesis robótica.</p>
+            </div>
+
+            <!-- Bloques de info con imagen lateral -->
+            <div class="grid lg:grid-cols-2 gap-10 items-center mb-16">
+                <div class="space-y-5">
+                    <h3 class="text-xl font-bold text-slate-900">Funcionamiento</h3>
+                    <p class="text-[15px] text-slate-500 leading-relaxed">
+                        DexSync funciona mediante un sistema de sensores mioeléctricos HD superficiales que detectan las señales eléctricas generadas por los músculos residuales del usuario. Estas señales son procesadas en tiempo real por un microprocesador con algoritmos de aprendizaje automático, permitiendo ejecutar movimientos precisos y naturales.
+                    </p>
+                    <p class="text-[15px] text-slate-500 leading-relaxed">
+                        El sistema de encaje utiliza regulación neumática que ajusta automáticamente la presión para garantizar comodidad durante uso prolongado. La prótesis se conecta vía Bluetooth a una aplicación móvil donde el usuario puede personalizar patrones de agarre y consultar la telemetría del dispositivo.
+                    </p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden aspect-video flex items-center justify-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqL2yjLmenaH9O-U7n_nKUm_eRfVT95NjJ_7qlOvu1tb90vUlthaC1TgE&s=10" alt="Tecnología de la prótesis DexSync" class="w-full h-full object-cover" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Especificaciones técnicas — RF3 -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6 text-center">Especificaciones Técnicas</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white border border-slate-200 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="scale" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <p class="text-2xl font-extrabold text-slate-900">385 g</p>
+                    <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Peso</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="battery-charging" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <p class="text-2xl font-extrabold text-slate-900">18 hrs</p>
+                    <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Autonomía de batería</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="grip" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <p class="text-2xl font-extrabold text-slate-900">24</p>
+                    <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Patrones de agarre</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="weight" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <p class="text-2xl font-extrabold text-slate-900">23 kg</p>
+                    <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1">Capacidad de carga</p>
+                </div>
+            </div>
+
+            <!-- Materiales y componentes -->
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white border border-slate-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mb-3">
+                        <i data-lucide="gem" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h4 class="text-[15px] font-bold text-slate-900 mb-1">Titanio Grado 5</h4>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Aleación Ti-6Al-4V de grado aeroespacial. Biocompatible, resistente a la corrosión y ultraligera.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mb-3">
+                        <i data-lucide="radio" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h4 class="text-[15px] font-bold text-slate-900 mb-1">Sensores Mioeléctricos HD</h4>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">8 canales de captación a 2,000 Hz para lectura precisa de señales musculares residuales.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-xl bg-dx-50 flex items-center justify-center mb-3">
+                        <i data-lucide="wind" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h4 class="text-[15px] font-bold text-slate-900 mb-1">Socket Neumático</h4>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Sistema de vacío activo con cámaras independientes que ajustan la presión en tiempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         BENEFICIOS — HU4: Conocer beneficios y ventajas
+         ══════════════════════════════════════ -->
+    <section id="beneficios" class="py-20 lg:py-28 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white">
+                    <i data-lucide="star" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">¿Por qué DexSync?</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Beneficios Principales</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Ventajas concretas que hacen de DexSync una solución líder en rehabilitación protésica.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="brain" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">Control Intuitivo</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Los sensores mioeléctricos interpretan tus señales musculares, haciendo que el movimiento se sienta natural desde el primer día.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">Respuesta Inmediata</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">El microprocesador NXC-7 procesa las señales a 1,200 ciclos por segundo, eliminando cualquier retardo perceptible.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="battery-full" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">Batería de Larga Duración</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Hasta 18 horas de uso continuo con una sola carga, cubriendo las actividades de un día completo sin interrupciones.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="feather" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">Ultraligera y Cómoda</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Con solo 385 gramos y un socket neumático autoajustable, el usuario puede llevarla durante horas sin fatiga ni molestias.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="smartphone" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">App de Personalización</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">La app DexSync Connect (iOS y Android) permite configurar patrones de agarre, monitorizar el rendimiento y recibir actualizaciones.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-xl bg-dx-50 flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-dx-600"></i>
+                    </div>
+                    <h3 class="text-[15px] font-bold text-slate-900 mb-2">Certificación Internacional</h3>
+                    <p class="text-[13px] text-slate-500 leading-relaxed">Aprobada por FDA y CE como dispositivo Clase III. Fabricada bajo los estándares ISO 13485 y IEC 62304.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         GALERÍA — HU9: Ver imágenes de la prótesis
+                   RF4: Galería de imágenes con acabados
+         ══════════════════════════════════════ -->
+    <section id="galeria" class="py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50">
+                    <i data-lucide="image" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Galería del Producto</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Diseño y Acabados</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Explora los detalles de diseño industrial, materiales y acabados de la prótesis DexSync.</p>
+            </div>
+
+            <!-- Grid de galería con lightbox -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(0)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYL3kpQMSCUGQdaQLCEp1AHqiYGZe-FOX0bfYst9RGubtYnzvMpQUaTSM&s=10" alt="Vista general de la prótesis" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(1)">
+                    <img src="https://www.gaceta.udg.mx/wp-content/uploads/2022/08/mano-scaled.jpg" alt="Detalle de articulaciones" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(2)">
+                    <img src="https://p.turbosquid.com/ts-thumb/JN/dWEAaJ/lC/1/jpg/1689726879/1920x1080/fit_q87/bf10380815691290d1ff03af705f569832e39af1/1.jpg" alt="Acabado en titanio" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(3)">
+                    <img src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/V3YE2LZFDNWJQ53NUL73EOOBII.jpg" alt="Componentes electrónicos" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(4)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcOyrMFJB9uVX9OLt-whrncqtpIxjpN_3UlyQnKVUroeTPMtGd7452hb0&s=10" alt="Prótesis en uso" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+                <div class="gallery-thumb rounded-xl overflow-hidden border border-slate-200 aspect-square" onclick="Gallery.open(5)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUutlGk20oiT4fZcgJrFsmX_X37IenbwBq0k1f7n6X4uYBrrEqcVb5BpM&s=10" alt="Detalle del socket" class="w-full h-full object-cover transition-transform duration-300" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4" onclick="Gallery.close()">
+        <button onclick="event.stopPropagation(); Gallery.prev()" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-10" aria-label="Anterior">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[85vh] rounded-xl shadow-2xl object-contain animate-scale-in" onclick="event.stopPropagation()">
+        <button onclick="event.stopPropagation(); Gallery.next()" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-10" aria-label="Siguiente">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+        <button onclick="Gallery.close()" class="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors" aria-label="Cerrar">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <p id="lightbox-counter" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm font-medium"></p>
+    </div>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         SIMULADOR 3D — Mano robótica interactiva
+         ══════════════════════════════════════ -->
+    <section id="simulador" class="py-20 lg:py-28 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white">
+                    <i data-lucide="hand" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Entorno de simulación</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Control de la Mano Robótica</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Explora el movimiento de la prótesis DexSync. Usa los deslizadores para controlar cada articulación de los cinco dedos de forma independiente.</p>
+            </div>
+
+            <!-- Gran rectángulo: viewport 3D + controladores -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+
+                <!-- Entorno 3D -->
+                <div id="hand-sim-canvas" class="relative w-full h-[380px] sm:h-[440px] lg:h-[500px] bg-gradient-to-b from-slate-100 to-slate-50">
+                    <div class="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/90 backdrop-blur-sm border border-slate-200 text-[11px] text-slate-500 pointer-events-none">
+                        <i data-lucide="move-3d" class="w-3.5 h-3.5 text-dx-600"></i>
+                        Arrastra para rotar la vista
+                    </div>
+                </div>
+
+                <!-- Controladores por dedo -->
+                <div class="border-t border-slate-200 p-5 sm:p-8">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i data-lucide="sliders-horizontal" class="w-4 h-4 text-dx-600"></i>
+                        <h3 class="text-[15px] font-bold text-slate-900">Controladores de articulaciones</h3>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+
+                        <!-- Pulgar -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                            <p class="text-[13px] font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-dx-500"></span>Pulgar
+                            </p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Base (CMC)</span><span id="sim-val-pulgar-0">0°</span></div>
+                                    <input type="range" id="sim-pulgar-0" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Media (MCP)</span><span id="sim-val-pulgar-1">0°</span></div>
+                                    <input type="range" id="sim-pulgar-1" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Punta (IP)</span><span id="sim-val-pulgar-2">0°</span></div>
+                                    <input type="range" id="sim-pulgar-2" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Índice -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                            <p class="text-[13px] font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-dx-500"></span>Índice
+                            </p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Base (MCP)</span><span id="sim-val-indice-0">0°</span></div>
+                                    <input type="range" id="sim-indice-0" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Media (PIP)</span><span id="sim-val-indice-1">0°</span></div>
+                                    <input type="range" id="sim-indice-1" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Punta (DIP)</span><span id="sim-val-indice-2">0°</span></div>
+                                    <input type="range" id="sim-indice-2" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Medio -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                            <p class="text-[13px] font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-dx-500"></span>Medio
+                            </p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Base (MCP)</span><span id="sim-val-medio-0">0°</span></div>
+                                    <input type="range" id="sim-medio-0" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Media (PIP)</span><span id="sim-val-medio-1">0°</span></div>
+                                    <input type="range" id="sim-medio-1" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Punta (DIP)</span><span id="sim-val-medio-2">0°</span></div>
+                                    <input type="range" id="sim-medio-2" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Anular -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                            <p class="text-[13px] font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-dx-500"></span>Anular
+                            </p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Base (MCP)</span><span id="sim-val-anular-0">0°</span></div>
+                                    <input type="range" id="sim-anular-0" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Media (PIP)</span><span id="sim-val-anular-1">0°</span></div>
+                                    <input type="range" id="sim-anular-1" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Punta (DIP)</span><span id="sim-val-anular-2">0°</span></div>
+                                    <input type="range" id="sim-anular-2" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Meñique -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+                            <p class="text-[13px] font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-dx-500"></span>Meñique
+                            </p>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Base (MCP)</span><span id="sim-val-menique-0">0°</span></div>
+                                    <input type="range" id="sim-menique-0" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Media (PIP)</span><span id="sim-val-menique-1">0°</span></div>
+                                    <input type="range" id="sim-menique-1" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-slate-500 mb-1"><span>Punta (DIP)</span><span id="sim-val-menique-2">0°</span></div>
+                                    <input type="range" id="sim-menique-2" min="0" max="90" value="0" class="sim-slider w-full h-1.5 rounded-full appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 flex justify-end">
+                        <button type="button" onclick="HandSimulator.reset()" class="inline-flex items-center gap-2 px-4 py-2 text-[13px] font-semibold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 hover:text-dx-600 transition-all">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            Restablecer posición
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         NOTICIAS — HU15: Publicar noticias
+                    RF9: Sección informativa / noticias
+         ══════════════════════════════════════ -->
+    <section id="noticias" class="py-20 lg:py-28 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white">
+                    <i data-lucide="newspaper" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Últimas novedades</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Noticias</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Actualizaciones, avances y novedades del proyecto DexSync.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="news-grid">
+                <!-- Noticia 1 -->
+                <article class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="aspect-video bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Noticia DexSync" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-dx-600 uppercase tracking-wider">Innovación</span>
+                            <span class="text-[10px] text-slate-300">•</span>
+                            <span class="text-[10px] text-slate-400">15 Ene 2025</span>
+                        </div>
+                        <h3 class="text-[15px] font-bold text-slate-900 leading-snug">DexSync presenta nueva versión con sensores de presión mejorados</h3>
+                        <p class="text-[13px] text-slate-500 leading-relaxed">La actualización incluye sensores piezoeléctricos de segunda generación que aumentan la precisión táctil en un 40%.</p>
+                    </div>
+                </article>
+
+                <!-- Noticia 2 -->
+                <article class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="aspect-video bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80" alt="Noticia DexSync" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-dx-600 uppercase tracking-wider">Certificación</span>
+                            <span class="text-[10px] text-slate-300">•</span>
+                            <span class="text-[10px] text-slate-400">28 Dic 2024</span>
+                        </div>
+                        <h3 class="text-[15px] font-bold text-slate-900 leading-snug">Aprobación FDA para uso clínico en Estados Unidos</h3>
+                        <p class="text-[13px] text-slate-500 leading-relaxed">DexSync recibe la certificación 510(k) que permite su comercialización y prescripción médica en territorio estadounidense.</p>
+                    </div>
+                </article>
+
+                <!-- Noticia 3 -->
+                <article class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="aspect-video bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80" alt="Noticia DexSync" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-dx-600 uppercase tracking-wider">Rehabilitación</span>
+                            <span class="text-[10px] text-slate-300">•</span>
+                            <span class="text-[10px] text-slate-400">10 Nov 2024</span>
+                        </div>
+                        <h3 class="text-[15px] font-bold text-slate-900 leading-snug">Programa de rehabilitación integral ahora incluido sin costo</h3>
+                        <p class="text-[13px] text-slate-500 leading-relaxed">Todos los pacientes DexSync recibirán 12 sesiones de adaptación con un terapeuta ocupacional certificado.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-slate-100"></div></div>
+
+
+    <!-- ══════════════════════════════════════
+         CONTACTO — HU7: Enviar formulario con datos y dudas
+                    HU8: Recibir confirmación de envío
+                    RF5, RF6, RF7: Formulario con validación y confirmación
+                    RF8: Datos de contacto
+         ══════════════════════════════════════ -->
+    <section id="contacto" class="py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center space-y-3 mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-dx-600"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Formulario de contacto</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">¿Tienes alguna consulta?</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Completa el formulario y nuestro equipo te responderá en menos de 24 horas hábiles.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-10">
+
+                <!-- Formulario — RF5, RF6 -->
+                <div class="lg:col-span-3">
+                    <form id="contact-form" onsubmit="ContactForm.send(event)" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-sm">
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="space-y-1.5">
+                                <label for="f-name" class="text-[13px] font-semibold text-slate-700">Nombre completo <span class="text-red-400">*</span></label>
+                                <input type="text" id="f-name" required placeholder="Ej: María López" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-300 text-sm focus:outline-none focus:border-dx-500 focus:ring-2 focus:ring-dx-500/10 transition-all">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="f-email" class="text-[13px] font-semibold text-slate-700">Correo electrónico <span class="text-red-400">*</span></label>
+                                <input type="email" id="f-email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-300 text-sm focus:outline-none focus:border-dx-500 focus:ring-2 focus:ring-dx-500/10 transition-all">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="f-phone" class="text-[13px] font-semibold text-slate-700">Teléfono de contacto</label>
+                            <input type="tel" id="f-phone" placeholder="+1 (555) 123-4567" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-300 text-sm focus:outline-none focus:border-dx-500 focus:ring-2 focus:ring-dx-500/10 transition-all">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="f-subject" class="text-[13px] font-semibold text-slate-700">Asunto <span class="text-red-400">*</span></label>
+                            <div class="relative">
+                                <select id="f-subject" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:border-dx-500 focus:ring-2 focus:ring-dx-500/10 transition-all appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Selecciona un tema</option>
+                                    <option value="info">Información general sobre la prótesis</option>
+                                    <option value="precio">Consulta de precios y financiamiento</option>
+                                    <option value="clinico">Evaluación clínica</option>
+                                    <option value="soporte">Soporte técnico</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="f-message" class="text-[13px] font-semibold text-slate-700">Mensaje <span class="text-red-400">*</span></label>
+                            <textarea id="f-message" rows="4" required placeholder="Escribe tu consulta, duda o solicitud de información..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-300 text-sm focus:outline-none focus:border-dx-500 focus:ring-2 focus:ring-dx-500/10 transition-all resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-start gap-2.5">
+                            <input type="checkbox" id="f-consent" required class="mt-0.5 w-4 h-4 rounded border-slate-300 text-dx-600 focus:ring-dx-500/20 cursor-pointer">
+                            <label for="f-consent" class="text-[11px] text-slate-400 leading-relaxed cursor-pointer">Acepto la política de privacidad y el procesamiento de mis datos personales para dar respuesta a mi solicitud.</label>
+                        </div>
+
+                        <!-- Error de validación visual -->
+                        <p id="form-error" class="hidden text-sm text-red-500 font-medium flex items-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                            <span>Por favor completa todos los campos obligatorios.</span>
+                        </p>
+
+                        <button type="submit" id="submit-btn" class="w-full flex items-center justify-center gap-2 py-3.5 bg-dx-600 hover:bg-dx-700 text-white font-semibold rounded-xl transition-colors">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Enviar Solicitud
+                        </button>
+
+                        <p class="text-center text-[11px] text-slate-400 flex items-center justify-center gap-1.5">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                            Respuesta en menos de <strong class="text-slate-600">24 horas hábiles</strong>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Info de contacto — RF8 / HU10: Redes sociales -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5">
+                        <h3 class="text-[15px] font-bold text-slate-900">Datos de Contacto</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-dx-50 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="mail" class="w-4 h-4 text-dx-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[13px] font-semibold text-slate-800">Correo electrónico</p>
+                                    <p class="text-[13px] text-slate-500">info@dexsync.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-dx-50 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="phone" class="w-4 h-4 text-dx-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[13px] font-semibold text-slate-800">Teléfono</p>
+                                    <p class="text-[13px] text-slate-500">+1 (800) 555-3397</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-dx-50 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-dx-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[13px] font-semibold text-slate-800">Dirección</p>
+                                    <p class="text-[13px] text-slate-500">Mosquera, Cundinamarca - Colombia</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-dx-50 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="clock" class="w-4 h-4 text-dx-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[13px] font-semibold text-slate-800">Horario de atención</p>
+                                    <p class="text-[13px] text-slate-500">Lunes a Viernes: 8:00 – 18:00 EST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redes sociales — HU10 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+                        <h3 class="text-[15px] font-bold text-slate-900">Síguenos</h3>
+                        <p class="text-[13px] text-slate-500">Conoce más sobre DexSync en nuestras redes sociales.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-dx-50 hover:border-dx-200 transition-all group" aria-label="Facebook">
+                                <i data-lucide="facebook" class="w-4 h-4 text-slate-400 group-hover:text-dx-600 transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-dx-50 hover:border-dx-200 transition-all group" aria-label="Instagram">
+                                <i data-lucide="instagram" class="w-4 h-4 text-slate-400 group-hover:text-dx-600 transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-dx-50 hover:border-dx-200 transition-all group" aria-label="Twitter / X">
+                                <i data-lucide="twitter" class="w-4 h-4 text-slate-400 group-hover:text-dx-600 transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-dx-50 hover:border-dx-200 transition-all group" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-4 h-4 text-slate-400 group-hover:text-dx-600 transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-dx-50 hover:border-dx-200 transition-all group" aria-label="YouTube">
+                                <i data-lucide="youtube" class="w-4 h-4 text-slate-400 group-hover:text-dx-600 transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+         ══════════════════════════════════════ -->
+    <footer class="border-t border-slate-100 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+                <div class="space-y-3">
+                    <a href="#inicio" class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-dx-600 flex items-center justify-center">
+                            <i data-lucide="bot" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+                        <span class="text-sm font-extrabold text-slate-900">Dex<span class="text-dx-600">Sync</span></span>
+                    </a>
+                    <p class="text-[12px] text-slate-400 leading-relaxed">Prótesis robótica inteligente con control mioeléctrico de última generación.</p>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3">Navegación</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Inicio</a></li>
+                        <li><a href="#informacion" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Información</a></li>
+                        <li><a href="#beneficios" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Beneficios</a></li>
+                        <li><a href="#galeria" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Galería</a></li>
+                        <li><a href="#noticias" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Noticias</a></li>
+                        <li><a href="#contacto" class="text-[12px] text-slate-400 hover:text-dx-600 transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3">Contacto</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-[12px] text-slate-400"><i data-lucide="mail" class="w-3 h-3 text-slate-300"></i>info@dexsync.com</li>
+                        <li class="flex items-center gap-2 text-[12px] text-slate-400"><i data-lucide="phone" class="w-3 h-3 text-slate-300"></i>+57 310 805 7756</li>
+                        <li class="flex items-center gap-2 text-[12px] text-slate-400"><i data-lucide="map-pin" class="w-3 h-3 text-slate-300"></i>Mosquera, Cundinamarca — Colombia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3">Redes Sociales</h4>
+                    <div class="flex gap-2">
+                        <a href="https://www.facebook.com/?locale=es_LA" class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-dx-50 transition-all" aria-label="Facebook"><img src="https://store-images.s-microsoft.com/image/apps.37935.9007199266245907.b029bd80-381a-4869-854f-bac6f359c5c9.91f8693c-c75b-4050-a796-63e1314d18c9?h=210"><i data-lucide="facebook" class="w-3.5 h-3.5 text-slate-400"></i></a>
+                        <a href="https://www.instagram.com/?hl=es" class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-dx-50 transition-all" aria-label="Instagram"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4GK7RSrSTfB81nK-YgASXpkhfyMGfigyoGVh37_3e9M3R61GagFDLDarT&s=10"><i data-lucide="instagram" class="w-3.5 h-3.5 text-slate-400"></i></a>
+                        <a href="https://www.instagram.com/?hl=es" class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-dx-50 transition-all" aria-label="Twitter"><img src="https://img.magnific.com/vector-premium/nuevo-vector-logotipo-twitter-x-vector-signo-twitter-x_952796-6.jpg?semt=ais_hybrid&w=740&q=80"><i data-lucide="twitter" class="w-3.5 h-3.5 text-slate-400"></i></a>
+                        <a href="https://www.youtube.com/?app=desktop&hl=es" class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-dx-50 transition-all" aria-label="YouTube"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQafJq65oBarMciRS0FCbupG12RnrnAYWd7EaP1bAy3RQ&s=10"><i data-lucide="youtube" class="w-3.5 h-3.5 text-slate-400"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-[10px] text-slate-400 text-center sm:text-left">© 2026 DexSync. Todos los derechos reservados.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-[10px] text-slate-400 hover:text-slate-600 transition-colors">Política de Privacidad</a>
+                    <a href="#" class="text-[10px] text-slate-400 hover:text-slate-600 transition-colors">Términos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ══════════════════════════════════════
+         MODAL DE CONFIRMACIÓN — HU8 / RF7
+         ══════════════════════════════════════ -->
+    <div id="confirm-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" onclick="ContactForm.closeModal()"></div>
+        <div class="relative bg-white border border-slate-200 rounded-2xl p-8 max-w-sm w-full text-center space-y-5 animate-scale-in shadow-xl">
+            <div class="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto">
+                <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-500"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">¡Solicitud Enviada!</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">Tu consulta fue recibida correctamente. Nuestro equipo te responderá en un plazo máximo de <strong class="text-dx-600">24 horas hábiles</strong>.</p>
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                <p class="text-[10px] text-slate-400">Número de referencia</p>
+                <p id="confirm-ref" class="text-lg font-mono font-bold text-dx-600 mt-1">DXS-000000</p>
+            </div>
+            <button onclick="ContactForm.closeModal()" class="w-full py-3 bg-dx-600 hover:bg-dx-700 text-white font-semibold rounded-xl transition-colors">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-[70] hidden">
+        <div class="flex items-center gap-3 px-5 py-3.5 bg-white border border-slate-200 rounded-xl shadow-lg animate-slide-in">
+            <div class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+            </div>
+            <p class="text-sm font-semibold text-slate-900" id="toast-msg">Operación exitosa</p>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════
+         JAVASCRIPT — Lógica modular
+         ══════════════════════════════════════ -->
+    <script>
+    /* ────────────────────────────
+       GALERÍA / LIGHTBOX
+       ──────────────────────────── */
+    const Gallery = {
+        images: [
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYL3kpQMSCUGQdaQLCEp1AHqiYGZe-FOX0bfYst9RGubtYnzvMpQUaTSM&s=10',
+            'https://www.gaceta.udg.mx/wp-content/uploads/2022/08/mano-scaled.jpg',
+            'https://p.turbosquid.com/ts-thumb/JN/dWEAaJ/lC/1/jpg/1689726879/1920x1080/fit_q87/bf10380815691290d1ff03af705f569832e39af1/1.jpg',
+            'https://cloudfront-us-east-1.images.arcpublishing.com/artear/V3YE2LZFDNWJQ53NUL73EOOBII.jpg',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcOyrMFJB9uVX9OLt-whrncqtpIxjpN_3UlyQnKVUroeTPMtGd7452hb0&s=10',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUutlGk20oiT4fZcgJrFsmX_X37IenbwBq0k1f7n6X4uYBrrEqcVb5BpM&s=10',
+        ],
+        captions: [
+            'Vista general de la prótesis',
+            'Detalle de articulaciones',
+            'Acabado en titanio',
+            'Componentes electrónicos',
+            'Prótesis en uso',
+            'Detalle del socket',
+        ],
+        current: 0,
+
+        open(index) {
+            this.current = index;
+            this._show();
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        },
+
+        close() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+            document.body.style.overflow = '';
+        },
+
+        next() {
+            this.current = (this.current + 1) % this.images.length;
+            this._show();
+        },
+
+        prev() {
+            this.current = (this.current - 1 + this.images.length) % this.images.length;
+            this._show();
+        },
+
+        _show() {
+            document.getElementById('lightbox-img').src = this.images[this.current];
+            document.getElementById('lightbox-img').alt = this.captions[this.current];
+            document.getElementById('lightbox-counter').textContent = `${this.current + 1} / ${this.images.length} — ${this.captions[this.current]}`;
+        }
+    };
+
+    // Teclas de navegación para la galería
+    document.addEventListener('keydown', (e) => {
+        const lb = document.getElementById('lightbox');
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'ArrowRight') Gallery.next();
+        if (e.key === 'ArrowLeft') Gallery.prev();
+        if (e.key === 'Escape') Gallery.close();
+    });
+
+
+    /* ────────────────────────────
+       FORMULARIO DE CONTACTO — RF5, RF6, RF7
+       ──────────────────────────── */
+    const ContactForm = {
+        send(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            const errorEl = document.getElementById('form-error');
+            const btn = document.getElementById('submit-btn');
+
+            // RF6: Validar campos
+            const name = document.getElementById('f-name').value.trim();
+            const email = document.getElementById('f-email').value.trim();
+            const subject = document.getElementById('f-subject').value;
+            const message = document.getElementById('f-message').value.trim();
+            const consent = document.getElementById('f-consent').checked;
+
+            if (!name || !email || !subject || !message || !consent) {
+                errorEl.classList.remove('hidden');
+                errorEl.classList.add('flex');
+                return;
+            }
+
+            // Validar formato de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorEl.querySelector('span').textContent = 'Por favor ingresa un correo electrónico válido.';
+                errorEl.classList.remove('hidden');
+                errorEl.classList.add('flex');
+                return;
+            }
+
+            errorEl.classList.add('hidden');
+            errorEl.classList.remove('flex');
+
+            // Estado de carga
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg><span>Enviando...</span>';
+
+            // Simular envío — RF7: Confirmación
+            setTimeout(() => {
+                const ref = 'DXS-' + Date.now().toString().slice(-6);
+                document.getElementById('confirm-ref').textContent = ref;
+
+                const modal = document.getElementById('confirm-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+
+                form.reset();
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i><span>Enviar Solicitud</span>';
+                lucide.createIcons();
+            }, 1500);
+        },
+
+        closeModal() {
+            const m = document.getElementById('confirm-modal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+    };
+
+
+    /* ────────────────────────────
+       UI GENERAL — RNF1, RNF2, RNF3
+       ──────────────────────────── */
+    const UI = {
+        mobileOpen: false,
+
+        toggleMobile() {
+            this.mobileOpen = !this.mobileOpen;
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        },
+
+        init() {
+            // Animaciones al hacer scroll — RNF5: Información clara
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.classList.add('animate-fade-up');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+            document.querySelectorAll('#beneficios .group, #informacion .bg-white, #noticias article').forEach(el => {
+                el.style.opacity = '0';
+                obs.observe(el);
+            });
+
+            // Sombra del navbar al scroll
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('shadow-sm', window.scrollY > 30);
+            }, { passive: true });
+
+            // Cerrar menú mobile al cambiar tamaño
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024 && this.mobileOpen) {
+                    this.mobileOpen = false;
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        }
+    };
+
+
+    /* ────────────────────────────
+       SIMULADOR 3D — Mano robótica
+       ──────────────────────────── */
+    const HandSimulator = {
+        scene: null,
+        camera: null,
+        renderer: null,
+        controls: null,
+        fingers: [],
+        fingerNames: ['pulgar', 'indice', 'medio', 'anular', 'menique'],
+
+        init() {
+            const container = document.getElementById('hand-sim-canvas');
+            if (!container || typeof THREE === 'undefined') return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            this.scene = new THREE.Scene();
+            this.scene.background = new THREE.Color(0xf1f5f9);
+            this.scene.fog = new THREE.Fog(0xf1f5f9, 6, 14);
+
+            this.camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 50);
+            this.camera.position.set(0.8, 1.8, 3.2);
+
+            this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            this.renderer.setSize(width, height);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            this.renderer.shadowMap.enabled = true;
+            this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(this.renderer.domElement);
+
+            if (typeof THREE.OrbitControls !== 'undefined') {
+                this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+                this.controls.enableDamping = true;
+                this.controls.dampingFactor = 0.06;
+                this.controls.target.set(0, 0.6, 0);
+                this.controls.minDistance = 2;
+                this.controls.maxDistance = 7;
+                this.controls.maxPolarAngle = Math.PI / 1.8;
+            }
+
+            const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+            const keyLight = new THREE.DirectionalLight(0xffffff, 0.85);
+            keyLight.position.set(4, 6, 5);
+            keyLight.castShadow = true;
+            keyLight.shadow.mapSize.set(1024, 1024);
+            const fillLight = new THREE.DirectionalLight(0xbae6fd, 0.35);
+            fillLight.position.set(-3, 2, -2);
+            this.scene.add(ambient, keyLight, fillLight);
+
+            const platform = new THREE.Mesh(
+                new THREE.CylinderGeometry(1.6, 1.6, 0.08, 48),
+                new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.4, roughness: 0.6 })
+            );
+            platform.position.y = -0.04;
+            platform.receiveShadow = true;
+            this.scene.add(platform);
+
+            this._buildHand();
+            this._bindSliders();
+
+            window.addEventListener('resize', () => this._onResize());
+            this._animate();
+        },
+
+        _buildHand() {
+            const hand = new THREE.Group();
+            const bodyMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.78, roughness: 0.28 });
+            const jointMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.82, roughness: 0.22 });
+            const accentMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.88, roughness: 0.18 });
+            const palmMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.72, roughness: 0.32 });
+
+            hand.add(this._buildPalm(bodyMat, palmMat, jointMat, accentMat));
+
+            const configs = [
+                { name: 'pulgar', x: -0.7, z: 0.3, rotY: 0.95, rotZ: -0.45, segLen: [0.3, 0.24, 0.19], radius: 0.072, axes: ['z', 'x', 'x'], signs: [1, 1, 1] },
+                { name: 'indice', x: -0.44, z: -0.22, rotY: 0.04, rotZ: 0, segLen: [0.38, 0.28, 0.21], radius: 0.062, axes: ['x', 'x', 'x'], signs: [1, 1, 1] },
+                { name: 'medio',  x: -0.06, z: -0.28, rotY: 0, rotZ: 0, segLen: [0.42, 0.3, 0.22], radius: 0.066, axes: ['x', 'x', 'x'], signs: [1, 1, 1] },
+                { name: 'anular', x: 0.28,  z: -0.24, rotY: -0.04, rotZ: 0, segLen: [0.39, 0.28, 0.21], radius: 0.062, axes: ['x', 'x', 'x'], signs: [1, 1, 1] },
+                { name: 'menique', x: 0.58, z: -0.14, rotY: -0.2, rotZ: 0.06, segLen: [0.32, 0.23, 0.17], radius: 0.054, axes: ['x', 'x', 'x'], signs: [1, 1, 1] },
+            ];
+
+            configs.forEach(cfg => {
+                const finger = this._createFinger(cfg.segLen, cfg.radius, accentMat, bodyMat, jointMat);
+                finger.group.position.set(cfg.x, 0.22, cfg.z);
+                finger.group.rotation.y = cfg.rotY;
+                finger.group.rotation.z = cfg.rotZ;
+                hand.add(finger.group);
+                this.fingers.push({ name: cfg.name, joints: finger.joints, axes: cfg.axes, signs: cfg.signs });
+            });
+
+            hand.position.y = 0.52;
+            hand.rotation.x = -0.12;
+            this.hand = hand;
+            this.scene.add(hand);
+        },
+
+        _createPalmShape() {
+            const s = new THREE.Shape();
+            s.moveTo(-0.2, 0.54);
+            s.bezierCurveTo(-0.05, 0.62, 0.05, 0.62, 0.2, 0.54);
+            s.bezierCurveTo(0.36, 0.48, 0.42, 0.22, 0.38, 0.02);
+            s.quadraticCurveTo(0.34, -0.18, 0.28, -0.38);
+            s.bezierCurveTo(0.18, -0.52, 0.06, -0.56, -0.08, -0.55);
+            s.bezierCurveTo(-0.24, -0.54, -0.38, -0.48, -0.48, -0.36);
+            s.bezierCurveTo(-0.56, -0.18, -0.54, 0.02, -0.62, 0.18);
+            s.bezierCurveTo(-0.82, 0.34, -0.88, 0.48, -0.74, 0.58);
+            s.bezierCurveTo(-0.58, 0.66, -0.36, 0.64, -0.2, 0.54);
+            return s;
+        },
+
+        _buildPalm(bodyMat, palmMat, jointMat, accentMat) {
+            const palm = new THREE.Group();
+            const panelMat = new THREE.MeshStandardMaterial({ color: 0x7c8ea0, metalness: 0.8, roughness: 0.26 });
+            const grooveMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.9, roughness: 0.15 });
+            const padMat = new THREE.MeshStandardMaterial({ color: 0x8fa4b5, metalness: 0.6, roughness: 0.42 });
+
+            const shape = this._createPalmShape();
+            const bevel = { depth: 0.16, bevelEnabled: true, bevelThickness: 0.022, bevelSize: 0.032, bevelSegments: 5, curveSegments: 28 };
+
+            const core = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, bevel), bodyMat);
+            core.rotation.x = -Math.PI / 2;
+            core.position.y = -0.04;
+            core.castShadow = true;
+            core.receiveShadow = true;
+            palm.add(core);
+
+            const dorsalShell = new THREE.Mesh(
+                new THREE.ExtrudeGeometry(shape, { depth: 0.055, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.018, bevelSegments: 3, curveSegments: 28 }),
+                panelMat
+            );
+            dorsalShell.rotation.x = -Math.PI / 2;
+            dorsalShell.position.y = 0.1;
+            dorsalShell.castShadow = true;
+            palm.add(dorsalShell);
+
+            const metacarpalArch = new THREE.Mesh(
+                new THREE.SphereGeometry(0.48, 32, 24, 0, Math.PI * 2, 0, Math.PI / 2.3),
+                palmMat
+            );
+            metacarpalArch.scale.set(1.55, 0.32, 1.2);
+            metacarpalArch.position.set(0.02, 0.12, -0.1);
+            metacarpalArch.castShadow = true;
+            palm.add(metacarpalArch);
+
+            const thenar = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 16), padMat);
+            thenar.scale.set(1.25, 0.55, 1.05);
+            thenar.position.set(-0.68, 0.08, 0.18);
+            thenar.castShadow = true;
+            palm.add(thenar);
+
+            const thenarPlate = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.04, 0.22), panelMat);
+            thenarPlate.position.set(-0.62, 0.14, 0.2);
+            thenarPlate.rotation.y = 0.45;
+            thenarPlate.castShadow = true;
+            palm.add(thenarPlate);
+
+            const hypo = new THREE.Mesh(new THREE.SphereGeometry(0.15, 18, 14), padMat);
+            hypo.scale.set(0.95, 0.5, 0.9);
+            hypo.position.set(0.62, 0.06, 0.02);
+            hypo.castShadow = true;
+            palm.add(hypo);
+
+            const palmPad = new THREE.Mesh(
+                new THREE.SphereGeometry(0.42, 24, 18, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2.8),
+                padMat
+            );
+            palmPad.scale.set(1.35, 0.45, 1.05);
+            palmPad.rotation.x = Math.PI;
+            palmPad.position.set(0.04, 0.02, -0.08);
+            palmPad.castShadow = true;
+            palm.add(palmPad);
+
+            [[-0.28, -0.08], [0.02, -0.1], [0.32, -0.06]].forEach(([x, z], i) => {
+                const panel = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.025, 0.38), i === 1 ? panelMat : bodyMat);
+                panel.position.set(x, 0.135, z);
+                panel.rotation.x = -0.18;
+                panel.castShadow = true;
+                palm.add(panel);
+
+                const seam = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.008, 0.012), grooveMat);
+                seam.position.set(x, 0.148, z + 0.16);
+                seam.rotation.x = -0.18;
+                palm.add(seam);
+            });
+
+            [[-0.3, -0.22], [-0.02, -0.26], [0.26, -0.22]].forEach(([x, z]) => {
+                const web = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.06, 0.14), grooveMat);
+                web.position.set(x, 0.1, z);
+                web.rotation.x = -0.15;
+                palm.add(web);
+            });
+
+            const knuckleData = [
+                { x: -0.44, z: -0.22 }, { x: -0.06, z: -0.28 }, { x: 0.28, z: -0.24 }, { x: 0.58, z: -0.14 },
+            ];
+            knuckleData.forEach(({ x, z }) => {
+                const housing = new THREE.Mesh(new THREE.SphereGeometry(0.07, 14, 12), jointMat);
+                housing.scale.set(1.15, 0.75, 1.1);
+                housing.position.set(x, 0.19, z);
+                housing.castShadow = true;
+                palm.add(housing);
+
+                const ring = new THREE.Mesh(new THREE.TorusGeometry(0.055, 0.008, 8, 16), accentMat);
+                ring.rotation.x = Math.PI / 2;
+                ring.position.set(x, 0.21, z);
+                palm.add(ring);
+            });
+
+            const thumbBase = new THREE.Mesh(new THREE.SphereGeometry(0.075, 14, 12), jointMat);
+            thumbBase.scale.set(1.2, 0.8, 1.15);
+            thumbBase.position.set(-0.7, 0.18, 0.3);
+            thumbBase.castShadow = true;
+            palm.add(thumbBase);
+
+            const thumbRing = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.008, 8, 16), accentMat);
+            thumbRing.rotation.y = 0.5;
+            thumbRing.rotation.x = Math.PI / 2.5;
+            thumbRing.position.set(-0.7, 0.2, 0.3);
+            palm.add(thumbRing);
+
+            [
+                [-0.55, 0.08, 0.12], [0.48, 0.06, -0.05], [-0.1, 0.13, -0.3], [0.15, 0.13, 0.28],
+            ].forEach(([x, y, z]) => {
+                const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.025, 8), grooveMat);
+                bolt.position.set(x, y, z);
+                palm.add(bolt);
+            });
+
+            const accentPaths = [
+                { x: 0, z: -0.02, sx: 0.85, sz: 0.06 },
+                { x: -0.55, z: 0.25, sx: 0.35, sz: 0.05 },
+            ];
+            accentPaths.forEach(({ x, z, sx, sz }) => {
+                const strip = new THREE.Mesh(new THREE.BoxGeometry(sx, 0.012, sz), accentMat);
+                strip.position.set(x, 0.152, z);
+                strip.rotation.x = -0.12;
+                palm.add(strip);
+            });
+
+            const wrist = new THREE.Group();
+            const wristCollar = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.3, 0.36, 0.12, 24),
+                jointMat
+            );
+            wristCollar.position.y = -0.1;
+            wristCollar.castShadow = true;
+            wrist.add(wristCollar);
+
+            const wristBody = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.26, 0.3, 0.24, 24),
+                bodyMat
+            );
+            wristBody.position.y = -0.28;
+            wristBody.castShadow = true;
+            wrist.add(wristBody);
+
+            const wristRing = new THREE.Mesh(new THREE.TorusGeometry(0.31, 0.022, 10, 28), accentMat);
+            wristRing.rotation.x = Math.PI / 2;
+            wristRing.position.y = -0.18;
+            wrist.add(wristRing);
+
+            const wristPanel = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.14, 0.08), panelMat);
+            wristPanel.position.set(0, -0.26, 0.22);
+            wristPanel.castShadow = true;
+            wrist.add(wristPanel);
+
+            wrist.position.set(0, -0.04, 0.48);
+            palm.add(wrist);
+
+            return palm;
+        },
+
+        _createFinger(segLengths, radius, segMat, bodyMat, jointMat) {
+            const group = new THREE.Group();
+            const joints = [];
+
+            segLengths.forEach((len, i) => {
+                const pivot = new THREE.Group();
+                const segment = new THREE.Mesh(
+                    new THREE.CylinderGeometry(radius * 0.88, radius, len, 12),
+                    i === 0 ? bodyMat : segMat
+                );
+                segment.position.y = len / 2;
+                segment.castShadow = true;
+                pivot.add(segment);
+
+                const knuckle = new THREE.Mesh(
+                    new THREE.SphereGeometry(radius * 1.08, 12, 12),
+                    jointMat
+                );
+                pivot.add(knuckle);
+
+                const tip = new THREE.Mesh(
+                    new THREE.SphereGeometry(radius * 0.75, 10, 10),
+                    segMat
+                );
+                tip.position.y = len;
+                pivot.add(tip);
+
+                if (i === 0) {
+                    group.add(pivot);
+                } else {
+                    pivot.position.y = segLengths[i - 1];
+                    joints[i - 1].add(pivot);
+                }
+                joints.push(pivot);
+            });
+
+            return { group, joints };
+        },
+
+        _bindSliders() {
+            this.fingers.forEach(finger => {
+                finger.joints.forEach((joint, ji) => {
+                    const slider = document.getElementById(`sim-${finger.name}-${ji}`);
+                    const valueEl = document.getElementById(`sim-val-${finger.name}-${ji}`);
+                    if (!slider) return;
+
+                    const update = () => {
+                        const deg = parseFloat(slider.value);
+                        const sign = finger.signs ? finger.signs[ji] : 1;
+                        const rad = sign * (deg * Math.PI) / 180;
+                        const axis = finger.axes[ji];
+                        joint.rotation[axis] = rad;
+                        if (valueEl) valueEl.textContent = deg + '°';
+                        slider.style.background = `linear-gradient(to right, #0284c7 0%, #0284c7 ${(deg / 90) * 100}%, #e2e8f0 ${(deg / 90) * 100}%, #e2e8f0 100%)`;
+                    };
+
+                    slider.addEventListener('input', update);
+                    update();
+                });
+            });
+        },
+
+        reset() {
+            this.fingers.forEach(finger => {
+                finger.joints.forEach(joint => {
+                    joint.rotation.set(0, 0, 0);
+                });
+            });
+            this.fingerNames.forEach(name => {
+                for (let i = 0; i < 3; i++) {
+                    const slider = document.getElementById(`sim-${name}-${i}`);
+                    const valueEl = document.getElementById(`sim-val-${name}-${i}`);
+                    if (slider) {
+                        slider.value = 0;
+                        slider.style.background = 'linear-gradient(to right, #0284c7 0%, #0284c7 0%, #e2e8f0 0%, #e2e8f0 100%)';
+                    }
+                    if (valueEl) valueEl.textContent = '0°';
+                }
+            });
+        },
+
+        _onResize() {
+            const container = document.getElementById('hand-sim-canvas');
+            if (!container || !this.renderer) return;
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            this.camera.aspect = w / h;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(w, h);
+        },
+
+        _animate() {
+            requestAnimationFrame(() => this._animate());
+            if (this.controls) this.controls.update();
+            this.renderer.render(this.scene, this.camera);
+        }
+    };
+
+    /* ────────────────────────────
+       INICIALIZACIÓN — RNF4: Carga < 3 segundos
+       ──────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+        UI.init();
+        HandSimulator.init();
+    });
+    </script>
+
+</body>
+</html>

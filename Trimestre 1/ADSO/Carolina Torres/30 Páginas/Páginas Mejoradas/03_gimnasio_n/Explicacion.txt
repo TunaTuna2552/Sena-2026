@@ -1,0 +1,22 @@
+Explicar:
+● Qué problema tenía la página:
+
+Los problemas que notamos fueron la paleta de colores que usamos, la mala distribución de  las tarjetas, el footer y no tenia formulario ni javascript
+
+● Qué mejoraron en UX:
+
+Mejoramos el diseño y la accesibilidad de la pagina
+
+● Qué mejoraron en UI
+
+Distribuimos la información agregando mas espacio entre las tarjetas y titulos
+
+● Qué hicieron en accesibilidad
+
+ Mejoramos la elección de colores, agregamos un formulario, y ordenamos la información con los títulos 
+
+
+● Qué hace el JavaScript
+
+Cambia a modo oscuro/claro, manda alertas y valida el formulario 
+

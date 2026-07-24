@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #fcfcfc;
+    color: #222;
+}
+
+.cabecera {
+    background-color: #1a3a5f;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.marca {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.lema {
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.bloque-info {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-seccion {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a3a5f;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.texto-largo {
+    line-height: 1.8;
+    color: #555;
+    font-size: 17px;
+}
+
+.contenedor-principal {
+    max-width: 800px;
+    margin: 20px auto 60px;
+    background: white;
+    padding: 40px;
+    border: 1px solid #ddd;
+}
+
+.grupo-grafico {
+    margin-bottom: 35px;
+}
+
+.nombre-dato {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.base-barra {
+    background: #f0f0f0;
+    height: 30px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+}
+
+.llenado {
+    height: 100%;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    transition: width 1.2s ease-in-out;
+}
+
+.color-uno { background-color: #5d7ea3; }
+.color-dos { background-color: #2c5d91; }
+
+.seccion-ayuda {
+    margin-top: 50px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.red-ayuda {
+    display: flex;
+    gap: 20px;
+}
+
+.opcion {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 20px;
+    border-left: 4px solid #1a3a5f;
+}
+
+.negrita {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.detalle {
+    font-size: 14px;
+    color: #666;
+}
+
+.centro-control {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.boton-ver {
+    background: #1a3a5f;
+    color: white;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.boton-ver:hover {
+    background: #2c5d91;
+}

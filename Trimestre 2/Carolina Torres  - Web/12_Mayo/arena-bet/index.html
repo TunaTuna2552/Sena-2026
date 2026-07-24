@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arena Bet Gaming</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <span class="brand-icon"><i class="bi bi-controller"></i></span>
+      <span class="brand-text">ARENA<span class="neon-accent">BET</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item"><a class="nav-link" href="#partidas"><i class="bi bi-trophy me-1"></i>Partidas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#historial"><i class="bi bi-clock-history me-1"></i>Historial</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ranking"><i class="bi bi-bar-chart-line me-1"></i>Ranking</a></li>
+        <li class="nav-item">
+          <button class="btn btn-outline-neon btn-sm" onclick="reiniciarJuego()" title="Reiniciar puntos">
+            <i class="bi bi-arrow-counterclockwise me-1"></i>Reiniciar
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-ghost-sm" id="themeToggle" onclick="toggleTheme()" title="Cambiar tema">
+            <i class="bi bi-lightning-charge-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero-section" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="container text-center position-relative">
+    <div class="hero-badge mb-3">
+      <span><i class="bi bi-broadcast me-1"></i>LIVE BETTING</span>
+    </div>
+    <h1 class="hero-title">
+      ARENA<span class="neon-accent">BET</span><br>
+      <span class="hero-sub">GAMING PREDICTIONS</span>
+    </h1>
+    <p class="hero-desc">Predice los resultados de las mejores partidas de eSports y demuestra que tienes el ojo del campeón.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="#apostar" class="btn btn-neon btn-lg">
+        <i class="bi bi-lightning-fill me-2"></i>APOSTAR AHORA
+      </a>
+      <a href="#partidas" class="btn btn-outline-neon btn-lg">
+        <i class="bi bi-eye me-2"></i>VER PARTIDAS
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PANEL DE PUNTOS ========== -->
+<section class="points-section py-4" id="dashboard">
+  <div class="container">
+    <div class="row g-3 justify-content-center">
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-coin"></i></div>
+          <div class="stat-value" id="puntosDisplay">1000</div>
+          <div class="stat-label">Puntos Actuales</div>
+          <div class="progress mt-2" style="height:6px">
+            <div class="progress-bar neon-bar" id="puntosBar" role="progressbar" style="width:100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-icon text-success"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="stat-value text-success" id="gananciasTotales">0</div>
+          <div class="stat-label">Total Ganado</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-icon text-danger"><i class="bi bi-graph-down-arrow"></i></div>
+          <div class="stat-value text-danger" id="perdidasTotales">0</div>
+          <div class="stat-label">Total Perdido</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-icon" id="nivelIcon"><i class="bi bi-shield-fill"></i></div>
+          <div class="stat-value" id="nivelDisplay">Bronce</div>
+          <div class="stat-label">Nivel Actual</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARTIDAS ========== -->
+<section class="section-dark py-5" id="partidas">
+  <div class="container">
+    <div class="section-header mb-4">
+      <h2 class="section-title"><i class="bi bi-trophy-fill me-2 neon-accent"></i>PARTIDAS EN VIVO</h2>
+      <div class="section-line"></div>
+    </div>
+    <!-- Filtro por juego -->
+    <div class="filter-bar mb-4 d-flex gap-2 flex-wrap">
+      <button class="btn btn-filter active" data-game="todos" onclick="filtrarPartidas(this)">
+        <i class="bi bi-grid me-1"></i>Todos
+      </button>
+      <button class="btn btn-filter" data-game="League of Legends" onclick="filtrarPartidas(this)">
+        <i class="bi bi-lightning me-1"></i>LoL
+      </button>
+      <button class="btn btn-filter" data-game="Valorant" onclick="filtrarPartidas(this)">
+        <i class="bi bi-crosshair2 me-1"></i>Valorant
+      </button>
+      <button class="btn btn-filter" data-game="Counter-Strike 2" onclick="filtrarPartidas(this)">
+        <i class="bi bi-bullseye me-1"></i>CS2
+      </button>
+    </div>
+    <div class="row g-4" id="partidasContainer"></div>
+  </div>
+</section>
+
+<!-- ========== FORMULARIO DE PREDICCIÓN ========== -->
+<section class="section-mid py-5" id="apostar">
+  <div class="container">
+    <div class="section-header mb-4">
+      <h2 class="section-title"><i class="bi bi-controller me-2 neon-accent"></i>REALIZAR PREDICCIÓN</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="form-card p-4">
+          <div id="formAlerta" class="alert d-none mb-3" role="alert"></div>
+
+          <div class="mb-3">
+            <label class="form-label gamer-label"><i class="bi bi-person-fill me-1"></i>Nombre del Jugador</label>
+            <input type="text" class="form-control gamer-input" id="nombreJugador" placeholder="Tu gamer tag..." autocomplete="off"/>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label gamer-label"><i class="bi bi-trophy me-1"></i>Seleccionar Partida</label>
+            <select class="form-select gamer-input" id="partidaSelect">
+              <option value="">-- Elige una partida --</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label gamer-label"><i class="bi bi-flag-fill me-1"></i>Equipo Ganador</label>
+            <div class="d-flex gap-3" id="equiposContainer">
+              <div class="equipo-option flex-fill text-center p-3" id="equipo1Btn" onclick="seleccionarEquipo(0)">
+                <div class="equipo-name" id="equipo1Nombre">--</div>
+                <div class="equipo-badge"><small>Equipo A</small></div>
+              </div>
+              <div class="vs-badge align-self-center">VS</div>
+              <div class="equipo-option flex-fill text-center p-3" id="equipo2Btn" onclick="seleccionarEquipo(1)">
+                <div class="equipo-name" id="equipo2Nombre">--</div>
+                <div class="equipo-badge"><small>Equipo B</small></div>
+              </div>
+            </div>
+            <input type="hidden" id="equipoElegido" value=""/>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label gamer-label">
+              <i class="bi bi-coin me-1"></i>Puntos a Apostar
+              <span class="text-muted ms-2 small">(Disponibles: <span id="puntosDisp">1000</span>)</span>
+            </label>
+            <input type="number" class="form-control gamer-input" id="puntosApostar" placeholder="Ej: 100" min="1"/>
+          </div>
+
+          <button class="btn btn-neon btn-lg w-100" onclick="realizarApuesta()">
+            <i class="bi bi-lightning-fill me-2"></i>CONFIRMAR APUESTA
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HISTORIAL ========== -->
+<section class="section-dark py-5" id="historial">
+  <div class="container">
+    <div class="section-header mb-4">
+      <h2 class="section-title"><i class="bi bi-clock-history me-2 neon-accent"></i>HISTORIAL DE APUESTAS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Filtros de historial -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <input type="text" class="form-control gamer-input" id="buscarJugador" placeholder="🔍 Buscar jugador..." oninput="filtrarHistorial()"/>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select gamer-input" id="filtroJuego" onchange="filtrarHistorial()">
+          <option value="">Todos los juegos</option>
+          <option value="League of Legends">League of Legends</option>
+          <option value="Valorant">Valorant</option>
+          <option value="Counter-Strike 2">Counter-Strike 2</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select gamer-input" id="filtroResultado" onchange="filtrarHistorial()">
+          <option value="">Todos los resultados</option>
+          <option value="ganó">Ganó</option>
+          <option value="perdió">Perdió</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-outline-neon w-100" onclick="ordenarPorGanancia()">
+          <i class="bi bi-sort-down me-1"></i>Mayor Ganancia
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table gamer-table" id="historialTable">
+        <thead>
+          <tr>
+            <th><i class="bi bi-person me-1"></i>Jugador</th>
+            <th><i class="bi bi-joystick me-1"></i>Juego</th>
+            <th><i class="bi bi-trophy me-1"></i>Partida</th>
+            <th>Elegido</th>
+            <th>Ganador Real</th>
+            <th><i class="bi bi-coin me-1"></i>Apostado</th>
+            <th>Resultado</th>
+            <th>Ganancia</th>
+            <th><i class="bi bi-calendar me-1"></i>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="historialBody">
+          <tr>
+            <td colspan="9" class="text-center py-4 text-muted">
+              <i class="bi bi-inbox fs-3 d-block mb-2"></i>Sin apuestas aún. ¡Haz tu primera predicción!
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RANKING ========== -->
+<section class="section-mid py-5" id="ranking">
+  <div class="container">
+    <div class="section-header mb-4">
+      <h2 class="section-title"><i class="bi bi-bar-chart-line-fill me-2 neon-accent"></i>RANKING GAMER</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div id="rankingContainer">
+          <div class="text-center py-4 text-muted">
+            <i class="bi bi-hourglass fs-3 d-block mb-2"></i>El ranking aparecerá al realizar apuestas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer-dark py-4">
+  <div class="container text-center">
+    <div class="footer-logo mb-2">ARENA<span class="neon-accent">BET</span> GAMING</div>
+    <p class="text-muted small mb-0">Solo puntos ficticios · Solo diversión · Taller Educativo &copy; 2025</p>
+  </div>
+</footer>
+
+<!-- ========== MODAL RESULTADO ========== -->
+<div class="modal fade" id="resultadoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content gamer-modal">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center pb-4">
+        <div class="result-icon mb-3" id="resultIcon"></div>
+        <h3 class="modal-result-title" id="resultTitle"></h3>
+        <p class="modal-result-desc" id="resultDesc"></p>
+        <div class="result-points mb-3" id="resultPoints"></div>
+        <div class="result-details" id="resultDetails"></div>
+        <button class="btn btn-neon mt-3" data-bs-dismiss="modal">
+          <i class="bi bi-controller me-1"></i>CONTINUAR JUGANDO
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+  <div id="gameToast" class="toast gamer-toast align-items-center border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastBody"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

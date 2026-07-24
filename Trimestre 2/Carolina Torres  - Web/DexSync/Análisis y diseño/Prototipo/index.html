@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DexSync — Prótesis robótica de miembro superior con control mioeléctrico de alta precisión. Tecnología avanzada para restaurar la movilidad." />
+  <title>DexSync — Prótesis Robótica Inteligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <nav id="navbar" class="navbar">
+    <div class="container navbar-inner">
+      <a href="#hero" class="navbar-brand">
+        <span class="brand-icon">⚙</span> Dex<span class="gradient-text">Sync</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="#beneficios" class="nav-link">Beneficios</a>
+        <a href="#especificaciones" class="nav-link">Especificaciones</a>
+        <a href="#galeria" class="nav-link">Galería</a>
+        <a href="#noticias" class="nav-link">Noticias</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+        <a href="login.html" class="nav-btn">Iniciar Sesión</a>
+      </div>
+
+      <button class="navbar-toggle" onclick="UI.toggleMobile()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="navbar-mobile" style="display:none;">
+      <a href="#beneficios" class="nav-link" onclick="UI.toggleMobile()">Beneficios</a>
+      <a href="#especificaciones" class="nav-link" onclick="UI.toggleMobile()">Especificaciones</a>
+      <a href="#galeria" class="nav-link" onclick="UI.toggleMobile()">Galería</a>
+      <a href="#noticias" class="nav-link" onclick="UI.toggleMobile()">Noticias</a>
+      <a href="#contacto" class="nav-link" onclick="UI.toggleMobile()">Contacto</a>
+      <a href="login.html" class="nav-btn" style="margin-top:0.5rem;">Iniciar Sesión</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge animate-fade-up">🤖 Tecnología Avanzada</span>
+      <h1 class="hero-title animate-fade-up" style="animation-delay:.15s">
+        Prótesis Robótica de<br /><span class="gradient-text">Última Generación</span>
+      </h1>
+      <p class="hero-description animate-fade-up" style="animation-delay:.3s">
+        DexSync fusiona ingeniería biomecánica con inteligencia artificial para crear
+        prótesis de miembro superior con control mioeléctrico de alta precisión.
+        Restauramos la movilidad, la autonomía y la confianza.
+      </p>
+      <div class="hero-actions animate-fade-up" style="animation-delay:.45s">
+        <a href="#beneficios" class="btn btn-primary btn-lg">Descubrir Más</a>
+        <a href="login.html" class="btn btn-outline btn-lg">Acceder al Portal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ BENEFICIOS ═══════════════════════ -->
+  <section id="beneficios" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Ventajas</span>
+        <h2 class="section-title">¿Por qué elegir <span class="gradient-text">DexSync</span>?</h2>
+        <p class="section-subtitle">Innovación tecnológica al servicio de la rehabilitación y la inclusión.</p>
+      </div>
+
+      <div class="card-grid-3">
+        <div class="benefit-card card">
+          <div class="card-icon">🧠</div>
+          <h3>Control Mioeléctrico</h3>
+          <p>Sensores EMG de alta fidelidad que interpretan señales musculares para movimientos naturales y precisos.</p>
+        </div>
+        <div class="benefit-card card">
+          <div class="card-icon">⚡</div>
+          <h3>Respuesta Instantánea</h3>
+          <p>Latencia inferior a 15 ms entre la intención del usuario y la respuesta mecánica de la prótesis.</p>
+        </div>
+        <div class="benefit-card card">
+          <div class="card-icon">🔋</div>
+          <h3>18 Horas de Autonomía</h3>
+          <p>Batería de iones de litio de alta capacidad con sistema de carga rápida por inducción.</p>
+        </div>
+        <div class="benefit-card card">
+          <div class="card-icon">🛡️</div>
+          <h3>Resistente IP67</h3>
+          <p>Certificación contra polvo y agua que permite su uso en condiciones adversas del día a día.</p>
+        </div>
+        <div class="benefit-card card">
+          <div class="card-icon">🎨</div>
+          <h3>Personalizable</h3>
+          <p>Elige entre acabados en fibra de carbono, titanio, ciber-azul o tono piel adaptativo.</p>
+        </div>
+        <div class="benefit-card card">
+          <div class="card-icon">📱</div>
+          <h3>App Companion</h3>
+          <p>Aplicación móvil para calibrar sensibilidad, registrar progreso y recibir actualizaciones OTA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ESPECIFICACIONES ═══════════════════════ -->
+  <section id="especificaciones" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Datos Técnicos</span>
+        <h2 class="section-title">Especificaciones <span class="gradient-text">Técnicas</span></h2>
+      </div>
+
+      <div class="card-grid-3">
+        <div class="spec-card card">
+          <div class="spec-value">5</div>
+          <div class="spec-label">Dedos Articulados</div>
+          <p>Cada dedo con 3 falanges y rango de 0° a 90° por articulación.</p>
+        </div>
+        <div class="spec-card card">
+          <div class="spec-value">22</div>
+          <div class="spec-label">Grados de Libertad</div>
+          <p>Incluyendo rotación de muñeca en pitch y yaw para manipulación natural.</p>
+        </div>
+        <div class="spec-card card">
+          <div class="spec-value">340g</div>
+          <div class="spec-label">Peso Total</div>
+          <p>Estructura ultraligera de fibra de carbono y aleación de titanio.</p>
+        </div>
+        <div class="spec-card card">
+          <div class="spec-value">&lt;15ms</div>
+          <div class="spec-label">Latencia</div>
+          <p>Tiempo de respuesta entre señal EMG y movimiento de la prótesis.</p>
+        </div>
+        <div class="spec-card card">
+          <div class="spec-value">5kg</div>
+          <div class="spec-label">Fuerza de Agarre</div>
+          <p>Motorización de alto torque capaz de sostener objetos pesados sin fatiga.</p>
+        </div>
+        <div class="spec-card card">
+          <div class="spec-value">IP67</div>
+          <div class="spec-label">Protección</div>
+          <p>Totalmente sellada contra polvo y resistente a inmersión temporal.</p>
+        </div>
+      </div>
+
+      <!-- COMPARATIVA DE MODELOS (HU13) -->
+      <div class="models-comparison mt-20">
+        <div class="section-header">
+          <h3 class="section-title">Comparativa de <span class="gradient-text">Modelos</span></h3>
+          <p class="section-desc">Encuentra la prótesis que mejor se adapte a tu estilo de vida.</p>
+        </div>
+        <div class="table-container">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>DexSync Basic</th>
+                <th>DexSync Pro</th>
+                <th>DexSync Elite</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Material Principal</td>
+                <td>Polímero Reforzado</td>
+                <td>Aleación de Aluminio</td>
+                <td>Fibra de Carbono + Titanio</td>
+              </tr>
+              <tr>
+                <td>Grados de Libertad</td>
+                <td>14</td>
+                <td>18</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>Fuerza de Agarre</td>
+                <td>2.5 kg</td>
+                <td>4.0 kg</td>
+                <td>5.0 kg</td>
+              </tr>
+              <tr>
+                <td>Sensores EMG</td>
+                <td>2 Sensores</td>
+                <td>4 Sensores HD</td>
+                <td>8 Sensores Matrix HD</td>
+              </tr>
+              <tr>
+                <td>Retroalimentación Háptica</td>
+                <td>Básica (Vibración)</td>
+                <td>Avanzada (Presión)</td>
+                <td>Premium (Presión + Temperatura)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ INFO ═══════════════════════ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Sobre Nosotros</span>
+        <h2 class="section-title">Tecnología con <span class="gradient-text">Propósito</span></h2>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-block card">
+          <h3>🏥 Misión</h3>
+          <p>Desarrollar dispositivos protésicos accesibles que mejoren la calidad de vida de personas con amputación de miembro superior, utilizando tecnología de vanguardia y diseño centrado en el usuario.</p>
+        </div>
+        <div class="info-block card">
+          <h3>🔬 Investigación</h3>
+          <p>Nuestro equipo de biomecánica e inteligencia artificial trabaja en algoritmos adaptativos que aprenden del patrón muscular individual de cada usuario para ofrecer una experiencia personalizada.</p>
+        </div>
+        <div class="info-block card">
+          <h3>🤝 Inclusión</h3>
+          <p>Colaboramos con centros de rehabilitación, universidades y organizaciones sin ánimo de lucro para garantizar que la tecnología protésica sea asequible y llegue a quienes más la necesitan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ GALERÍA ═══════════════════════ -->
+  <section id="galeria" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Imágenes</span>
+        <h2 class="section-title">Galería del <span class="gradient-text">Producto</span></h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="Gallery.open(0)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYL3kpQMSCUGQdaQLCEp1AHqiYGZe-FOX0bfYst9RGubtYnzvMpQUaTSM&s=10" alt="Vista general de la prótesis" loading="lazy" />
+          <div class="gallery-caption">Vista general</div>
+        </div>
+        <div class="gallery-item" onclick="Gallery.open(1)">
+          <img src="https://www.gaceta.udg.mx/wp-content/uploads/2022/08/mano-scaled.jpg" alt="Detalle de articulaciones" loading="lazy" />
+          <div class="gallery-caption">Articulaciones</div>
+        </div>
+        <div class="gallery-item" onclick="Gallery.open(2)">
+          <img src="https://p.turbosquid.com/ts-thumb/JN/dWEAaJ/lC/1/jpg/1689726879/1920x1080/fit_q87/bf10380815691290d1ff03af705f569832e39af1/1.jpg" alt="Acabado en titanio" loading="lazy" />
+          <div class="gallery-caption">Acabado titanio</div>
+        </div>
+        <div class="gallery-item" onclick="Gallery.open(3)">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/V3YE2LZFDNWJQ53NUL73EOOBII.jpg" alt="Componentes electrónicos" loading="lazy" />
+          <div class="gallery-caption">Electrónica</div>
+        </div>
+        <div class="gallery-item" onclick="Gallery.open(4)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcOyrMFJB9uVX9OLt-whrncqtpIxjpN_3UlyQnKVUroeTPMtGd7452hb0&s=10" alt="Prótesis en uso" loading="lazy" />
+          <div class="gallery-caption">En uso</div>
+        </div>
+        <div class="gallery-item" onclick="Gallery.open(5)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUutlGk20oiT4fZcgJrFsmX_X37IenbwBq0k1f7n6X4uYBrrEqcVb5BpM&s=10" alt="Detalle del socket" loading="lazy" />
+          <div class="gallery-caption">Socket</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" style="display:none;" onclick="Gallery.close()">
+    <button class="lightbox-close" onclick="Gallery.close()">&times;</button>
+    <button class="lightbox-prev" onclick="event.stopPropagation(); Gallery.prev()">&#10094;</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Galería DexSync" />
+      <div class="lightbox-info">
+        <span id="lightbox-counter">1 / 6</span>
+        <span id="lightbox-caption"></span>
+      </div>
+    </div>
+    <button class="lightbox-next" onclick="event.stopPropagation(); Gallery.next()">&#10095;</button>
+  </div>
+
+  <!-- ═══════════════════════ NOTICIAS ═══════════════════════ -->
+  <section id="noticias" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Actualidad</span>
+        <h2 class="section-title">Últimas <span class="gradient-text">Noticias</span></h2>
+      </div>
+
+      <div class="card-grid-3">
+        <article class="news-card card">
+          <div class="news-date">15 Jun 2026</div>
+          <h3>DexSync v2.0 presentada en ExpoMedical</h3>
+          <p>La nueva versión incorpora sensores de presión en cada dedo y un algoritmo adaptativo que aprende patrones de agarre individuales.</p>
+          <a href="#" class="card-link">Leer más →</a>
+        </article>
+        <article class="news-card card">
+          <div class="news-date">02 May 2026</div>
+          <h3>Alianza con centros de rehabilitación</h3>
+          <p>Firmamos convenio con 12 centros especializados en Colombia para facilitar el acceso a prótesis robóticas subsidiadas.</p>
+          <a href="#" class="card-link">Leer más →</a>
+        </article>
+        <article class="news-card card">
+          <div class="news-date">18 Mar 2026</div>
+          <h3>Premio a la Innovación Tecnológica</h3>
+          <p>DexSync fue reconocida con el Premio Nacional de Innovación en la categoría de dispositivos médicos de asistencia.</p>
+          <a href="#" class="card-link">Leer más →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONTACTO ═══════════════════════ -->
+  <section id="contacto" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Escríbenos</span>
+        <h2 class="section-title">Formulario de <span class="gradient-text">Contacto</span></h2>
+        <p class="section-subtitle">¿Tienes preguntas o deseas una demostración? Déjanos tu mensaje.</p>
+      </div>
+
+      <div class="form-container">
+        <form id="contact-form" onsubmit="ContactForm.send(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Nombre completo *</label>
+              <input type="text" id="f-name" class="form-input" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="f-email">Correo electrónico *</label>
+              <input type="email" id="f-email" class="form-input" placeholder="correo@ejemplo.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-subject">Asunto *</label>
+            <select id="f-subject" class="form-select" required>
+              <option value="">Selecciona un asunto</option>
+              <option value="info">Información general</option>
+              <option value="demo">Solicitar demostración</option>
+              <option value="soporte">Soporte técnico</option>
+              <option value="comercial">Consulta comercial</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="f-message">Mensaje *</label>
+            <textarea id="f-message" class="form-textarea" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+
+          <div class="form-group form-check">
+            <input type="checkbox" id="f-consent" />
+            <label for="f-consent">Acepto la política de tratamiento de datos personales</label>
+          </div>
+
+          <div id="form-error" class="form-error" style="display:none;"></div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary btn-lg">
+            <span class="btn-text">Enviar Mensaje</span>
+            <span class="btn-spinner"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal-overlay" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>✅ Mensaje Enviado</h3>
+      </div>
+      <div class="modal-body">
+        <p>Tu mensaje ha sido recibido correctamente. Te responderemos pronto.</p>
+        <p class="modal-ref">Referencia: <strong id="confirm-ref">DXS-000000</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="ContactForm.closeModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-icon">⚙</span> Dex<span class="gradient-text">Sync</span>
+          <p class="footer-tagline">Tecnología protésica de última generación.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#especificaciones">Especificaciones</a>
+          <a href="#galeria">Galería</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Términos de Uso</a>
+          <a href="#">Licencias</a>
+        </div>
+
+        <div class="footer-social">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" title="Facebook">📘</a>
+            <a href="#" class="social-icon" title="Twitter">🐦</a>
+            <a href="#" class="social-icon" title="Instagram">📷</a>
+            <a href="#" class="social-icon" title="LinkedIn">💼</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 DexSync. Todos los derechos reservados. | Proyecto SENA — Carolina Torres</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast-container" style="display:none;">
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

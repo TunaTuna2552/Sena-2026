@@ -1,0 +1,61 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('../img/fondo.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    color: #ffffff; font-family: 'Verdana', sans-serif; margin: 0;
+    display: flex; justify-content: center; align-items: center; height: 100vh;
+}
+.container {
+    text-align: center; max-width: 800px; padding: 40px; background: rgba(20, 20, 20, 0.8);
+    border: 3px solid #33ff77; border-radius: 30px; backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(51, 255, 119, 0.3);
+}
+.escudo-header { width: 150px; filter: drop-shadow(0 0 15px #33ff77); margin-bottom: 20px; }
+h1 { font-size: 3rem; color: #33ff77; text-transform: uppercase; letter-spacing: 5px; }
+.info-card h2 { font-size: 1.8rem; border-bottom: 2px solid #555; padding-bottom: 10px; }
+.info-card p { font-size: 1.2rem; line-height: 1.6; color: #ccc; }
+.detalles { list-style: none; padding: 0; text-align: left; display: inline-block; margin-top: 20px; }
+.detalles li { font-size: 1.1rem; margin: 10px 0; }
+.detalles strong { color: #33ff77; }
+.btn-volver {
+    display: inline-block; margin-top: 30px; padding: 15px 30px; background: #33ff77;
+    color: white; text-decoration: none; font-weight: bold; border-radius: 10px; transition: all 0.3s ease;
+}
+.btn-volver:hover { background: #009944; transform: scale(1.05); box-shadow: 0 0 20px #33ff77; }
+
+
+
+/* AJUSTES PARA MÓVILES (Páginas internas) */
+@media (max-width: 768px) {
+    body {
+        height: auto; /* Permite que la página crezca hacia abajo */
+        padding: 40px 10px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .escudo-header {
+        width: 100px; /* Escudo más pequeño arriba */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Título ajustado */
+        letter-spacing: 2px;
+    }
+
+    .info-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .info-card p, .detalles li {
+        font-size: 1rem; /* Texto base más cómodo para leer */
+    }
+
+    .btn-volver {
+        width: 100%; /* Botón de volver ocupa todo el ancho */
+        box-sizing: border-box;
+    }
+}

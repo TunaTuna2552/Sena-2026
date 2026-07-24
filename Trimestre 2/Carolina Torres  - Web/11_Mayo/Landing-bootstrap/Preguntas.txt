@@ -1,0 +1,8 @@
+Vista desde pantalla de celular (Utilizando F12 y Toggle Device Toolbar debido a dificultades técnicas)
+
+Componente más útil
+    El componente más útil fue el Navbar de Bootstrap, porque gestiona automáticamente el menú colapsable (el de las tres rayitas) para móviles sin tener que escribir código JavaScript manualmente.
+
+Breve explicación de clases de Bootstrap usadas
+    Utilicé el sistema de rejilla con la clase col-md-4 para que en computadoras se vean 3 servicios por fila, pero al probarlo en la vista móvil (usando las herramientas de desarrollador o Toggle Device Toolbar), verifiqué que el diseño es responsive y las tarjetas se apilan verticalmente para facilitar la lectura.
+

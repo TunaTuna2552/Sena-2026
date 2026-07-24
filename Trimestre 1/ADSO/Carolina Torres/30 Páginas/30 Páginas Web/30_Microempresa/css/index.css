@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #fffdf2;
+    color: #3e2723;
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 8%;
+    background: white;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: #d48806;
+    letter-spacing: 2px;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.opcion a {
+    text-decoration: none;
+    color: #5d4037;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.opcion a:hover {
+    color: #f39c12;
+}
+
+.contenido {
+    height: 600px;
+    background-image: url('https://mieldelapuela.com/wp-content/uploads/2021/07/macro-photo-of-working-bees-on-honeycombs-beekeeping-and-honey-production-image.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.capa-visual {
+    background: rgba(0,0,0,0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.titulo-principal {
+    font-size: 60px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.eslogan {
+    font-size: 22px;
+    max-width: 700px;
+    margin-bottom: 35px;
+    line-height: 1.5;
+}
+
+.boton-dorado {
+    background: #f1c40f;
+    color: #3e2723;
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(241, 196, 15, 0.4);
+    transition: 0.3s;
+}
+
+.boton-dorado:hover {
+    transform: scale(1.05);
+    background: #e67e22;
+    color: white;
+}
+
+.seccion-info {
+    display: flex;
+    justify-content:center;
+    gap: 50px;
+    padding: 80px 10%;
+    background: white;
+}
+
+.bloque {
+    text-align: center;
+    max-width: 300px;
+}
+
+.icono img {
+    width: 200px; 
+    margin: 0 auto 15px;
+}
+
+.subtitulo {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #d48806;
+}
+
+.detalle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #795548;
+}
+
+.pie-pagina {
+    background-color: #3e2723;
+    padding: 40px 8%;
+    margin-top: 50px;
+    color: #f1c40f;
+}
+
+.contenido-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #5d4037;
+    padding-top: 20px;
+}
+
+.marca-pie {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.redes {
+    display: flex;
+    gap: 20px;
+}
+
+.icono-red a {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffff;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.icono-red a:hover {
+    color: #f1c40f;
+    transform: translateY(-2px);
+}
+
+
+.icono-red:hover {
+    color: white;
+}

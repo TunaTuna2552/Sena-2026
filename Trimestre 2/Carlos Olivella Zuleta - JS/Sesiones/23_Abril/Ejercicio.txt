@@ -1,0 +1,29 @@
+EJERCICIO 1
+
+Área de una circunferencia
+
+-------------------------------------------------
+INICIO
+	Entrada -> Lea r
+	Proceso -> A = 3.141592 * r^2
+	Salida -> Imprima A  
+FIN
+-------------------------------------------------
+-------------------------------------------------
+EJERCICIO 2
+
+Leer un número entero de dos cifras y hacer un proceso para obtener el valor invertido e imprimirlo
+
+-------------------------------------------------
+INICIO
+	Entero N, R //Cualquier dato que bote será entero sin decimales ni nada parecido
+
+	N = 47
+
+	Entrada -> Leer N
+	Proceso -> 
+		P = N / 10 //Divido N entre 10, ya que no hay decimales obtengo el número de la izquierda
+		S = N % 10 //
+		R = S * 10 + P
+	Salida -> Imprimir R
+FIN

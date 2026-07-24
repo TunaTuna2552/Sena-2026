@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Currículum<span>VITAE</span></div>
+            <ul>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#formacion">Formación</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-container">
+            <img src="avatar.png" alt="Foto de Julian" class="img_ava"> 
+            <div class="hero-texto">
+                <h1>Julian</h1>
+                <p>Analista de Programación | Mosquera, Cundinamarca</p>
+                <div class="con">
+                    <span>julian@gmail.com</span> | <span>+57 123 456 7890</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="experiencia" class="info-section">
+            <h2 class="titulo">EXPERIENCIA LABORAL</h2>
+            <div class="tarjetas">
+                <div class="tar">
+                    <h3>Analista de programación</h3>
+                    <p><strong>Indra (2026)</strong></p>
+                    <p>Desarrollo web avanzado con Node.js y arquitecturas modernas.</p>
+                </div>
+                <div class="tar">
+                    <h3>Desarrollador Junior</h3>
+                    <p><strong>TechNova (2024-2025)</strong></p>
+                    <p>Diseño de interfaces UX/UI y programación en Python.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="formacion" class="info-section bg-alt">
+            <h2 class="titulo">FORMACIÓN ACADÉMICA</h2>
+            <div class="tarjetas">
+                <div class="tar">
+                    <h3>SENA</h3>
+                    <p><strong>Tecnólogo ADSO (2026)</strong></p>
+                    <p>Análisis y Desarrollo de Software.</p>
+                </div>
+                <div class="tar">
+                    <h3>SENA</h3>
+                    <p><strong>Técnico en Programación (2024)</strong></p>
+                    <p>Bases de la programación y lógica.</p>
+                </div>
+                <div class="tar">
+                    <h3>Bachiller</h3>
+                    <p><strong>I.E. Juan Luis Londoño (2024)</strong></p>
+                    <p>Bachillerato Académico.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="info-section">
+            <h2 class="titulo">MIS SERVICIOS ESPECIALIZADOS</h2>
+            <div class="tarjetas">
+                <div class="tar">
+                    <h3>Desarrollo Web</h3>
+                    <p>Sitios rápidos, responsivos y optimizados para SEO.</p>
+                </div>
+                <div class="tar">
+                    <h3>Diseño UI/UX</h3>
+                    <p>Interfaces intuitivas que enamoran a los usuarios.</p>
+                </div>
+                <div class="tar">
+                    <h3>QA Testing</h3>
+                    <p>Aseguramiento de calidad y depuración de errores.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="info-section">
+            <div class="formulario">
+                <h2>Enviar Mensaje</h2>
+                <form id="cvForm">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required placeholder="Tu nombre aquí">
+                    <label for="mensaje">Asunto:</label>
+                    <textarea id="mensaje" rows="4" placeholder="¿En qué puedo ayudarte?"></textarea>
+                    <button type="submit" id="btnEnviar">Enviar Datos</button>
+                </form>
+                <p id="responseMsg" class="hidden"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Currículum | Creada por Cristian y Karol</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

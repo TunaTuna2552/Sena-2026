@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Web - Slim</title>
+    <link rel="stylesheet" href="../../css/chat.css">
+</head>
+<body>
+    <input type="radio" id="seccion-todos" name="secciones" checked hidden>
+    <input type="radio" id="seccion-grupos" name="secciones" hidden>
+
+    <div class="web-container">
+        <nav class="barra-lateral">
+            <div class="menu">
+                <div class="icono activo"><img src="../../imagenes/chat.png"></div>
+                <a href="../clases/clases.html" class="icono"><img src="../../imagenes/clases.avif"></a>
+                <div class="icono"><img src="../../imagenes/calendario.png"></div>
+                <div class="icono"><img src="../../imagenes/biblioteca.webp"></div>
+                <div class="icono"><img src="../../imagenes/actividades.png"></div>
+            </div>
+            <div class="avatar">
+                <svg viewBox="0 0 24 24" class="usuario"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>
+            </div>
+        </nav>
+
+        <aside class="chats">
+            <header class="encabezado">
+                <h1>Hola Julian</h1>
+            </header>
+            <hr class="division">
+            <div class="secciones">
+                <label for="seccion-todos" class="seccion-label label-todos">TODOS</label>
+                <label for="seccion-grupos" class="seccion-label label-grupos">GRUPOS</label>
+                <button class="agregar">+</button>
+            </div>
+            <hr class="division">
+            <main class="chat-list">
+                <div class="content-todos">
+                    <div class="chat-item">
+                        <div class="chat-avatar"><svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg></div>
+                        <div class="chat-info"><span class="user-name">Usuario 1</span><span class="last-msg">Estado del mensaje...</span></div>
+                    </div>
+                </div>
+                <div class="content-grupos">
+                    <div class="chat-item">
+                        <div class="chat-avatar"><svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg></div>
+                        <div class="chat-info"><span class="user-name">Grupo 1</span><span class="last-msg">Último mensaje de grupo...</span></div>
+                    </div>
+                </div>
+            </main>
+        </aside>
+
+        <section class="main-content">
+            <div class="placeholder-msg">
+                <img src="../../imagenes/chat.png" style="width: 140px; opacity: 0.1; margin-bottom: 20px;">
+                <h2>Bandeja de Entrada</h2>
+                <p>Haz clic en una conversación para ver los detalles.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

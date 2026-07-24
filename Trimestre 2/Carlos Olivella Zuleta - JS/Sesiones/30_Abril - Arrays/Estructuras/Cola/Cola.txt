@@ -1,0 +1,5 @@
+COLA 
+
+    Es una estructura de datos que tiene la caaracterística de que, el primer dato en entrar es el primer dato en salir.
+
+    Por ejemplo: Supongamos que tenemos un almacen de artículos perecederos, entonces los primeros en llegar son los primeros en salir.

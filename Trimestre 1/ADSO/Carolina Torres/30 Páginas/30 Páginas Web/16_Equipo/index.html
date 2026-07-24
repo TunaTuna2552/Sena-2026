@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo de jugadores</title>
+	<link rel="icon" href="grillo.webp" type="image/png">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<header>
+		<h1>Saltamontes FC</h1>
+        	<h2>Todas las estadísticas del equipo</h2>
+        	<button onclick="mostrar('sec1')" class="boton1">Calendario</button>
+        	<button onclick="mostrar('sec2')" class="boton2">Equipo</button>
+        	<button onclick="mostrar('sec3')" class="boton3">Resultados</button>
+	</header>
+
+
+<! ------------------------------------------------------------------- -->
+
+
+	<div id="sec1" style="display: flex;">
+	<h2 class="titulo-seccion">Calendario de juego</h2>
+		<div class="calendario">
+    			<table class="tabla-futbol">
+           			<tr>
+					<th></th>
+                			<th>PARTIDO</th>
+					<th></th>
+                			<th>HORA</th>
+                			<th>LUGAR</th>
+            			</tr>
+           			 <tr>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/9770.png&h=200&w=200" alt="Tigres"></td>
+					<td class="p">Tigres vs Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+                			<td class="p">4:00 PM</td><td class="p">Armando Maestre Pavajeau, Valledupar, Colombia</td>
+            			</tr>
+           			 <tr>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17370.png&h=200&w=200" alt="Atlético FC"></td>
+					<td class="p">Atlético FC vs Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+                			<td class="p">2:00 PM</td><td class="p">Metropolitano de Techo, Bogotá</td>
+            			</tr>
+           			 <tr>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17374.png&h=200&w=200" alt="Unión Magdalena FC"></td>
+					<td class="p">Unión Magdalena vs Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+                			<td class="p">3:00 PM</td><td class="p">Polideportivo Sur, Envigado, Colombia</td>
+            			</tr>
+           			 <tr>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17371.png&h=200&w=200" alt="Bogotá FC"></td>
+					<td class="p">Bogotá FC vs Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+                			<td class="p">8:20 PM</td><td class="p">Centenario de Armenia, Buenos Aires, Colombia</td>
+            			</tr>
+			</table>
+		</div>
+
+
+	</div>
+
+<!------------------------------------------------------------------------------------------- -->
+
+    <div id="sec2" style="display: none;">
+        <h2 class="titulo-seccion">JUGADORES</h2>
+	<div class="jugadores">
+
+        <div class="jugador">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA8he1_SG9bXDLaXF4YsRHmIP4CwBlKLkSnG-kFB9ORQgKnWUjr6YKNnycMV5fHuIMsrK-tb-1qCTQ-aPK9mmKiFT7N7f9rbum7mE1yM4&s=10" alt="El rayo">
+            <div class="info">
+                <div class="nombre">Santiago "El Rayo" Méndez</div>
+		<i>Extremo Derecho</i>
+                <p class="descripcion">Un velocista puro con un control de balón envidiable a máxima velocidad. Criado en las calles de Medellín, su especialidad es el desborde y el centro preciso.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg/330px-Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg" alt="El muro de hierro">
+            <div class="info">
+                <div class="nombre">Klaus Von Heisler</div>
+		<i>Portero</i>
+                <p class="descripcion">Conocido como "El Muro de Hierro". Con casi dos metros de altura y reflejos felinos, es famoso por su capacidad para intimidar a los delanteros en el uno contra uno.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://static.wikia.nocookie.net/matrix/images/5/57/Keanu-reeves-.jpeg/revision/latest?cb=20200709213927"alt="Thiago Silva">
+            <div class="info">
+                <div class="nombre">Thiago Silva Jr.</div>
+		<i>Extremo Derecho</i>
+                <p class="descripcion">No confundir con el real; este joven brasileño es un maestro de la salida limpia. Tiene la elegancia de un mediocampista y la fuerza de un gladiador.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BugPyqmMtOIAKO_o5DysIe-Zc2MVOWGO6L7BNu4XMe1GmSLhl8GKaq2jksHH3YGmDYSgAHpQRIG8PLSak21yMdV2qLKYFjubI3XkFr4&s=10" alt="Arquitecto del Caos">
+            <div class="info">
+                <div class="nombre">Luca Moretti</div>
+		<i>Mediocentro Defensivo</i>
+                <p class="descripcion">El "Arquitecto del Caos". Es experto en interceptar pases y destruir el juego rival sin cometer faltas, siempre con el uniforme impecable.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Y%C5%ABji_Nishida_%28Legavolley_2021%29.png" alt="Kenji Tanaka">
+            <div class="info">
+                <div class="nombre">Kenji Tanaka</div>
+		<i>Mediocampista Ofensivo</i>
+                <p class="descripcion">Un mago del balón japonés. Su visión de juego le permite ver líneas de pase que nadie más nota. Es el cerebro creativo del equipo.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://www.hockeydb.com/ihdb/photos/alexander-volkov-2022-4312.jpg" alt="El tanque">
+            <div class="info">
+                <div class="nombre">Aleksei Volkov</div>
+		<i>Delantero Centro</i>
+                <p class="descripcion"> Un tanque ruso. No es el más rápido, pero es letal en el juego aéreo y tiene un disparo de media distancia que parece un cañonazo.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://media.licdn.com/dms/image/v2/D4E03AQE7UWv-T3WZaw/profile-displayphoto-scale_200_200/B4EZikWYxaGcAY-/0/1755103990176?e=2147483647&v=beta&t=X-x49yzCOgEppq_TNl-B1oHmG5aTdDDcUelhSkTgBbI" alt="La pulga">
+            <div class="info">
+                <div class="nombre">Mateo "La Pulga" Ruiz</div>
+		<i>Extremo Izquierdo</i>
+                <p class="descripcion">Pequeño, zurdo y extremadamente habilidoso. Su especialidad es el regate hacia adentro para buscar el ángulo superior del arco.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHB_V5NYEYkppTD7GiqszJkES-rvgBLMXL0A&s" alt="Julian Thorne">
+            <div class="info">
+                <div class="nombre">Julian Thorne</div>
+		<i>Lateral Derecho</i>
+                <p class="descripcion">Un jugador moderno con una resistencia inagotable. Sube y baja la banda los 90 minutos y es un especialista en el cobro de tiros de esquina.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://m.media-amazon.com/images/M/MV5BNDY0Mzc4Nzc0N15BMl5BanBnXkFtZTcwNzY2MDM1NA@@._V1_.jpg" alt="Bastien Dubois">
+            <div class="info">
+                <div class="nombre">Bastien Dubois</div>
+		<i>Defensa Central</i>
+                <p class="descripcion">El capitán veterano. Su mayor arma es la lectura de juego y el liderazgo; organiza a toda la defensa con solo un par de gritos.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://img.olympics.com/images/image/private/t_1-1_300/f_auto/primary/buidvp508vmuhlyixrnj" alt="El rayo">
+            <div class="info">
+                <div class="nombre">Omar Al-Fayed</div>
+		<i>Mediocampista Mixto</i>
+                <p class="descripcion">Un jugador "box-to-box" con una potencia física increíble. Recupera el balón en su área y termina la jugada en la del rival.</p>
+            </div>
+        </div>
+
+        <div class="jugador">
+            <img src="https://img.uefa.com/imgml/TP/players/1/2026/324x324/250193522.jpg" alt="Erik Sundqvist">
+            <div class="info">
+                <div class="nombre">Erik Sundqvist</div>
+		<i>Lateral Izquierdo</i>
+                <p class="descripcion">Sueco con una técnica de golpeo exquisita. Es el encargado de los tiros libres directos, con un efecto que desafía las leyes de la física.</p>
+            </div>
+        </div>
+	</div>
+	</div>
+
+
+
+
+<! ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+ <div id="sec3" style="display: none;">
+        <h2 class="titulo-seccion">RESULTADOS</h2>
+	<div class="resultado">
+
+    			<table class="resultados">
+
+					<th>Fecha</th>
+                			<th></th>
+					<th>Resultado</th>
+                			<th></th>
+
+            			</tr>
+           			 <tr>
+					<td>Viernes 27 de febrero</td>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/9770.png&h=200&w=200" alt="Tigres"></td>
+					<td class="p">Tigres 0 - 1 Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+
+            			</tr>
+           			 <tr>
+					<td>Domingo 22 de febrero</td>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17370.png&h=200&w=200" alt="Atlético FC"></td>
+					<td class="p">Atlético FC 2 - 1 Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+
+            			</tr>
+           			 <tr>
+					<td>Sábado 14 de febrero</td>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17374.png&h=200&w=200" alt="Unión Magdalena FC"></td>
+					<td class="p">Unión Magdalena 0 - 1 Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+
+            			</tr>
+           			 <tr>
+
+					<td>Lunes 9 de febrero</td>
+                			<td><img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/17371.png&h=200&w=200" alt="Bogotá FC"></td>
+					<td class="p">Bogotá FC 0 - 1 Saltamontes FC</td>
+					<td><img src="grillo.webp" alt="Saltamontes"></td>
+
+            			</tr>
+			</table>
+	</div>
+</div>
+
+    <footer>
+        &copy; Saltamontes FC - SENA.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

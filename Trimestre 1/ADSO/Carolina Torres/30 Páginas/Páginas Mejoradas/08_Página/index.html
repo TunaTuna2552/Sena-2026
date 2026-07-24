@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bogotá, Colombia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <div class="logo">Bogotá D.C.</div>
+        <nav>
+            <ul>
+                <li><a href="#datos">INICIO</a></li>
+                <li><a href="#lugares">LUGARES</a></li>
+                <li><a href="#cultura">CULTURA</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-contenido">
+            <h1>BOGOTÁ, D.C.</h1>
+            <p>La Atenas Suramericana y capital de la República de Colombia.</p>
+            <a href="#lugares" class="boton-hero">¡EXPLORA AHORA!</a>
+        </div>
+    </section>
+
+    <main class="contenedor">
+
+        <section id="datos" class="seccion">
+            <h2>Datos Importantes</h2>
+            <table border="1">
+                <tr>
+                    <th>Indicador</th>
+                    <th>Información</th>
+                </tr>
+                <tr><td>País</td><td>Colombia</td></tr>
+                <tr><td>Altitud</td><td>2.625 metros sobre el nivel del mar</td></tr>
+                <tr><td>Clima</td><td>Templado de montaña (Promedio 14°C)</td></tr>
+                <tr><td>Población</td><td>Aproximadamente 8 millones de habitantes</td></tr>
+                <tr><td>Fundación</td><td>6 de agosto de 1538</td></tr>
+            </table>
+        </section>
+
+        <section id="lugares" class="seccion">
+            <h2>Lugares Turísticos Imprescindibles</h2>
+            <div class="grid-lugares">
+                <article class="tarjeta">
+                    <img src="https://radionacional-v3.s3.amazonaws.com/s3fs-public/styles/portadas_relaciona_4_3/public/node/article/field_image/MONSERRATE.jpg?h=efd05f9e&itok=TV3iPsvO" alt="Cerro de Monserrate">
+                    <h3>Cerro de Monserrate</h3>
+                    <p>El punto más icónico de la ciudad. Se puede ascender por funicular, teleférico o sendero peatonal para obtener la mejor vista panorámica de la sabana de Bogotá.</p>
+                </article>
+
+                <article class="tarjeta">
+                    <img src="https://elrinconcolombiano.com/wp-content/uploads/2024/11/barrio-la-candelaria-de-Bogota.jpg" alt="La Candelaria">
+                    <h3>La Candelaria</h3>
+                    <p>Centro histórico de la ciudad caracterizado por su arquitectura colonial, calles empedradas, museos y sedes gubernamentales como el Capitolio Nacional.</p>
+                </article>
+
+                <article class="tarjeta">
+                    <img src="https://mir-s3-cdn-cf.behance.net/projects/404/21046387.5459412d8ecd1.jpg" alt="Museo del Oro">
+                    <h3>Museo del Oro</h3>
+                    <p>Alberga la colección de orfebrería prehispánica más grande del mundo, incluyendo la famosa Balsa Muisca que representa la leyenda de El Dorado.</p>
+                </article>
+
+                <article class="tarjeta">
+                    <img src="https://plazacapital.co/media/k2/items/cache/920ff72ebfa161115e98757aa3802606_XL.jpg" alt="Barrio Usaquén">
+                    <h3>Barrio Usaquén</h3>
+                    <p>Conocido por su ambiente bohemio, mercado de pulgas dominical y una amplia oferta gastronómica en antiguas casas coloniales.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="cultura" class="seccion">
+            <h2>Cultura y Gastronomía</h2>
+            <p>No te puedes ir de la ciudad sin probar:</p>
+            <ul>
+                <li><strong>Ajiaco Santafereño:</strong> Sopa tradicional a base de tres tipos de papa y guascas.</li>
+                <li><strong>Chocolate Completo:</strong> Chocolate caliente acompañado de queso, pan y almojábana.</li>
+                <li><strong>TransMilenio:</strong> El sistema de transporte masivo que conecta la ciudad.</li>
+            </ul>
+        </section>
+
+        <section id="contacto" class="seccion-contacto">
+            <h2>Contacto</h2>
+            <form id="formBogota">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required placeholder="Tu nombre">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="tu@email.com">
+                <button type="submit">ENVIAR</button>
+            </form>
+            <div id="respuesta" class="oculto"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Para más información, visita el portal oficial de turismo de la ciudad.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

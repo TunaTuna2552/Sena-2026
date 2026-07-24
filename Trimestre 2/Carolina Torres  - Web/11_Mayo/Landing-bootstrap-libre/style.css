@@ -1,0 +1,101 @@
+/* 1. VARIABLES GLOBALES */
+:root {
+    --color-principal: #6610f2; /* Índigo */
+    --color-hover: #520dc2;
+    --color-suave: #e0d0ff;
+    --color-oscuro: #1e0a3c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hero-reparacion {
+    min-height: 80vh;
+    background: linear-gradient(rgba(102, 16, 242, 0.85), rgba(30, 10, 60, 0.9)), 
+                url("https://images.unsplash.com/photo-1597333581232-261e058edc30?auto=format&fit=crop&w=1200&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(102, 16, 242, 0.2) !important;
+}
+
+/* Clases de utilidad para colores */
+.text-indigo { color: var(--color-principal) !important; }
+.bg-indigo { background-color: var(--color-principal) !important; }
+
+.btn-primary {
+    background-color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-hover) !important;
+    border-color: var(--color-hover) !important;
+}
+
+.btn-outline-primary {
+    color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-principal) !important;
+    color: white !important;
+}
+
+.btn-outline-light:hover {
+    background-color: white !important;
+    color: var(--color-principal) !important;
+}
+
+.bg-primary {
+    background-color: var(--color-principal) !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--color-suave) !important;
+    color: var(--color-principal) !important;
+}
+
+.accordion-button:focus {
+    border-color: var(--color-suave) !important;
+    box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, 0.25) !important;
+}
+
+.border-primary {
+    border-color: var(--color-principal) !important;
+}
+
+/* 6. FOOTER */
+footer hr {
+    opacity: 0.1;
+}
+
+footer .text-muted {
+    font-size: 0.
+}
+
+@media (max-width: 768px) {
+    .hero-reparacion h1 {
+        font-size: 2.5rem;
+    }
+    
+    .card-hover:hover {
+        transform: none;
+    }
+}

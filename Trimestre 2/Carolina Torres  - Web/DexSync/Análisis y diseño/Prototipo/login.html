@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iniciar sesión en DexSync — Accede al portal de simulación 3D y tienda de componentes." />
+  <title>DexSync — Iniciar Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--dx-950) 0%, var(--dx-800) 35%, var(--dx-600) 70%, var(--dx-400) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    .login-page::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      top: -120px;
+      right: -120px;
+      border-radius: 50%;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .login-page::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.10) 0%, transparent 70%);
+      bottom: -80px;
+      left: -80px;
+      border-radius: 50%;
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      position: relative;
+      z-index: 1;
+      animation: scaleIn 0.5s ease-out;
+    }
+
+    .login-logo {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--slate-800);
+      margin-bottom: 0.25rem;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: var(--slate-500);
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .login-form label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 0.35rem;
+    }
+
+    .login-form .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--slate-200);
+    }
+
+    .login-form .form-input:focus {
+      background: #fff;
+    }
+
+    .login-error {
+      color: #dc2626;
+      font-size: 0.8125rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      min-height: 1.2em;
+    }
+
+    .login-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .login-actions .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--slate-500);
+    }
+
+    .login-footer a {
+      color: var(--dx-600);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .login-demo-hint {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--dx-50);
+      border: 1px solid var(--dx-200);
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--dx-800);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .login-demo-hint strong {
+      display: block;
+      font-size: 0.8125rem;
+      margin-bottom: 0.25rem;
+      color: var(--dx-700);
+    }
+
+    .login-demo-hint code {
+      background: var(--dx-100);
+      padding: 0.1em 0.35em;
+      border-radius: 0.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8125rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="brand-icon">⚙</span> Dex<span class="gradient-text">Sync</span>
+      </div>
+      <p class="login-subtitle">Accede al simulador 3D y la tienda de componentes</p>
+
+      <form class="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group" id="name-group" style="display: none;">
+          <label for="login-name">Nombre completo</label>
+          <input type="text" id="login-name" class="form-input" placeholder="Tu nombre" />
+        </div>
+
+        <div class="form-group">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" class="form-input" placeholder="correo@ejemplo.com" required autofocus />
+        </div>
+
+        <div class="form-group">
+          <label for="login-pass">Contraseña</label>
+          <input type="password" id="login-pass" class="form-input" placeholder="••••••••" required />
+        </div>
+
+        <div id="login-error" class="login-error"></div>
+
+        <div class="login-actions">
+          <button type="submit" id="login-btn" class="btn btn-primary btn-lg">
+            <span class="btn-text">Iniciar Sesión</span>
+            <span class="btn-spinner"></span>
+          </button>
+        </div>
+      </form>
+
+      <div class="login-footer" id="toggle-mode-link">
+        ¿No tienes cuenta? <a href="#" onclick="toggleMode(event)">Regístrate aquí</a>
+      </div>
+
+      <div class="login-demo-hint">
+        <strong>🔑 Credenciales de demostración</strong>
+        Email: <code>demo@dexsync.com</code><br />
+        Contraseña: <code>DexSync2026</code><br /><br />
+        <strong>🛡️ Acceso Administrador</strong><br />
+        Email: <code>admin@dexsync.com</code><br />
+        Contraseña: <code>admin123</code>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    /* If already authenticated, go straight to portal */
+    if (Auth.isAuthenticated()) {
+      window.location.href = 'portal.html';
+    }
+
+    let isRegisterMode = false;
+
+    function toggleMode(event) {
+      event.preventDefault();
+      isRegisterMode = !isRegisterMode;
+      const title = document.querySelector('.login-subtitle');
+      const btnText = document.querySelector('.btn-text');
+      const toggleLink = document.querySelector('#toggle-mode-link');
+      const nameGroup = document.getElementById('name-group');
+
+      if (isRegisterMode) {
+        title.textContent = 'Crea una cuenta para acceder al portal';
+        btnText.textContent = 'Registrarse';
+        toggleLink.innerHTML = '¿Ya tienes cuenta? <a href="#" onclick="toggleMode(event)">Inicia sesión</a>';
+        nameGroup.style.display = 'block';
+        document.getElementById('login-name').required = true;
+      } else {
+        title.textContent = 'Accede al simulador 3D y la tienda de componentes';
+        btnText.textContent = 'Ingresar al Portal';
+        toggleLink.innerHTML = '¿No tienes cuenta? <a href="#" onclick="toggleMode(event)">Regístrate aquí</a>';
+        nameGroup.style.display = 'none';
+        document.getElementById('login-name').required = false;
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const pass  = document.getElementById('login-pass').value;
+      const errEl = document.getElementById('login-error');
+      const btn   = document.getElementById('login-btn');
+
+      errEl.textContent = '';
+
+      if (!email || !pass) {
+        errEl.textContent = 'Por favor completa todos los campos.';
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        
+        if (isRegisterMode) {
+          // Mock registration success
+          sessionStorage.setItem('dexsync_auth', 'true');
+          window.location.href = 'portal.html';
+        } else {
+          if (email === 'admin@dexsync.com' && pass === 'admin123') {
+            sessionStorage.setItem('dexsync_auth', 'admin');
+            window.location.href = 'admin.html';
+          } else if (email === 'demo@dexsync.com' && pass === 'DexSync2026') {
+            sessionStorage.setItem('dexsync_auth', 'true');
+            window.location.href = 'portal.html';
+          } else {
+            errEl.textContent = 'Credenciales inválidas. Verifica tu correo y contraseña.';
+            btn.disabled = false;
+          }
+        }
+      }, 800);
+    }
+  </script>
+</body>
+</html>

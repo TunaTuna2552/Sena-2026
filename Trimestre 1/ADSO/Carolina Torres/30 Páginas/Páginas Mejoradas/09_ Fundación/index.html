@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Manos Abiertas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navegacion">
+            <div class="logo">Manos<span>Abiertas</span></div>
+            <ul class="menu">
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#donar">Unirse</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Transformamos realidades, construimos esperanza.</h1>
+                <p>Trabajando por un futuro con igualdad de oportunidades en cada comunidad.</p>
+                <a href="#donar" class="boton-cta">Quiero ayudar ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="contenido-principal">
+        <section id="nosotros" class="seccion">
+            <h2 class="titulo-centrado">Nuestra Identidad</h2>
+            <div class="contenedor-tarjetas">
+                <article class="tarjeta">
+                    <h3>Misión</h3>
+                    <p>Brindar apoyo integral a comunidades vulnerables mediante programas de educación y salud.</p>
+                </article>
+                <article class="tarjeta">
+                    <h3>Visión</h3>
+                    <p>Ser referentes nacionales en la erradicación del hambre infantil para el año 2030.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="proyectos" class="seccion fondo-claro">
+            <h2 class="titulo-centrado">Proyectos en Curso</h2>
+            <div class="grid-proyectos">
+                <div class="proyecto-card">
+                    <h3>Semillas de Saber</h3>
+                    <p>Construcción de bibliotecas comunitarias y refuerzo escolar.</p>
+                </div>
+                <div class="proyecto-card">
+                    <h3>Salud Móvil</h3>
+                    <p>Brigadas médicas y odontológicas en zonas de difícil acceso.</p>
+                </div>
+                <div class="proyecto-card"> 
+                    <h3>Huertas Urbanas</h3>
+                    <p>Capacitación en cultivo de alimentos para el autoconsumo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impacto" class="seccion">
+            <h2 class="titulo-centrado">Impacto</h2>
+            <div class="grid-cifras">
+                <div class="cifra-item">
+                    <span class="numero">+5,000</span>
+                    <p>Niños beneficiados</p>
+                </div>
+                <div class="cifra-item">
+                    <span class="numero">15</span>
+                    <p>Escuelas rurales</p>
+                </div>
+                <div class="cifra-item">
+                    <span class="numero">100%</span>
+                    <p>Transparencia</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="donar" class="seccion">
+            <h2 class="titulo-centrado">Únete como Voluntario</h2>
+            <div class="contenedor-formulario">
+                <form id="form-contacto" class="formulario">
+                    <div class="grupo-input">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    
+                    <div class="grupo-input">
+                        <label for="area">Área de interés</label>
+                        <select id="area" name="area">
+                            <option value="educacion">Educación</option>
+                            <option value="salud">Salud</option>
+                            <option value="logistica">Logística</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="boton-interactivo">ENVIAR SOLICITUD</button>
+                </form>
+
+                <div id="mensaje-exito" class="oculto" aria-live="polite">
+                    <h3>¡Gracias!</h3>
+                    <p>Hemos recibido tu solicitud y te contactaremos pronto.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <p><strong>Contacto:</strong> Calle 100 #15-20, Bogotá, Colombia | Tel: (601) 555-0199</p>
+        <p>&copy; 2026 Fundación Manos Abiertas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #d1e9ff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid #000;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+header h2 {
+    margin: 5px 0;
+    font-weight: normal;
+}
+
+.botones {
+    margin: 20px 0;
+}
+
+button {
+    background-color: #a8e6cf;
+    border: 2px solid #000;
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin: 0 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.agenda {
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.agenda div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+select, 
+input[type="date"], 
+input[type="time"] {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 8px;
+    border-radius: 5px;
+    flex: 1;
+    font-family: sans-serif;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #a8e6cf;
+    border: 2px solid #000;
+    border-radius: 25px;
+    padding: 10px 40px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    border-top: 3px solid #000;
+    margin: 0;
+}
+
+footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    align-items: center;
+}
+
+.izq h3 {
+    margin: 5px 0;
+    font-weight: normal;
+}
+
+.der {
+    text-align: right;
+}
+
+.der h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}

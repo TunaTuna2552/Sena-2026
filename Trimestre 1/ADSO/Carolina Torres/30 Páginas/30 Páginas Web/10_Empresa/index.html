@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECNO REPARACIONES</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tecno Reparaciones</h1>
+        <h2>Instalaciones y mantenimiento de la más alta calidad</h2>
+        <button onclick="mostrarTodo()" class="boton3">Inicio</button>
+        <button onclick="mostrar('sec1')" class="boton1">Servicios</button>
+        <button onclick="mostrar('sec2')" class="boton2">Testimonios</button>
+
+    </header>
+
+    <div id="sec1" class="servicios" style="display: flex;">
+        <h2 class="titulo-seccion">SERVICIOS QUE OFRECEMOS</h2>
+        
+        <div class="reparacion">		
+            <h3>Reparaciones de dispositivos eléctricos y electrónicos</h3>
+            <hr>
+            <p>Realizamos cualquier tipo de reparación a todo tipo de dispositivos como:</p>
+            <ul>
+                <li>Celulares</li>
+                <li>Tablets</li>
+                <li>Laptops</li>
+                <li>Computadores de torre</li>
+                <li>Gafas inteligentes</li>
+                <li>Relojes inteligentes</li>
+            </ul>
+        </div>
+
+        <div class="mantenimiento">
+            <h3>Mantenimiento de electrodomésticos</h3>
+            <hr>
+            <p>En nuestra empresa realizamos mantenimiento tanto preventivo como correctivo en aparatos como:</p>
+            <ul>
+                <li>Neveras</li>
+                <li>Horno</li>
+                <li>Estufas eléctricas</li>
+                <li>Impresoras</li>
+                <li>Proyector de video</li>
+                <li>Altavoces</li>
+                <li>Televisores</li>
+            </ul>
+        </div>
+
+        <div class="instalacion"> <!-- Corregido: instalación -->
+            <h3>Instalación de dispositivos</h3>
+            <hr>
+            <p>También realizamos instalaciones de los siguientes electrodomésticos:</p>
+            <ul>
+                <li>Neveras</li>
+                <li>Horno</li>
+                <li>Estufas eléctricas</li>
+                <li>Duchas eléctricas</li>
+                <li>Televisores</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="sec2" class="testimonios" style="display: none;">
+        <h2 class="titulo-seccion">TESTIMONIOS</h2>
+
+        <div class="primero">
+            <div class="asan"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA8he1_SG9bXDLaXF4YsRHmIP4CwBlKLkSnG-kFB9ORQgKnWUjr6YKNnycMV5fHuIMsrK-tb-1qCTQ-aPK9mmKiFT7N7f9rbum7mE1yM4&s=10"" alt="Asán Sanchez"></div>
+            <div class="info">
+                <div class="nombre">Asán Sanchez</div>
+                <p class="testimonio">"Es un alivio tener técnicos que se anticipan a los problemas. Antes solo llamábamos cuando algo se rompía; ahora todo funciona de forma eficiente y no perdemos tiempo".</p>
+            </div>
+        </div>
+
+        <div class="segundo">
+            <div class="img-contenedor-p"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BugPyqmMtOIAKO_o5DysIe-Zc2MVOWGO6L7BNu4XMe1GmSLhl8GKaq2jksHH3YGmDYSgAHpQRIG8PLSak21yMdV2qLKYFjubI3XkFr4&s=10" alt="Cristian Herrera"></div>
+            <div class="info">
+                <div class="nombre">Cristian Herrera</div>
+                <p class="testimonio"> "Me salvaron. En otro lugar me dijeron que la tarjeta madre no servía y costaba una fortuna, pero aquí identificaron que era solo un módulo de RAM defectuoso. Fueron muy honestos".</p>
+            </div>
+        </div>
+
+        <div class="tercero">
+            <div class="img-contenedor"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg/330px-Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg" alt="Rayen Vera"></div>
+            <div class="info">
+                <div class="nombre">Rayen Vera</div>
+                <p class="testimonio">"El servicio técnico fue amable y se nota que saben lo que hacen, pero la logística me quedó a deber. Me prometieron que mi laptop estaría lista en dos días y terminaron tardando una semana porque 'no tenían la pieza en stock'. Al final el equipo quedó perfecto."</p>
+            </div>
+        </div>
+
+        <div class="cuarto">
+            <div class="img-contenedor"><img src="https://static.wikia.nocookie.net/matrix/images/5/57/Keanu-reeves-.jpeg/revision/latest?cb=20200709213927" alt="Carlos Rivera"></div>
+            <div class="info">
+                <div class="nombre">Carlos Rivera</div>
+                <p class="testimonio">"Compré una PC nueva y el técnico hizo todo el trabajo duro: instaló el software que necesitaba y la dejó lista según mis requerimientos personales".</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Tecno Reparaciones - SENA.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+Explicar:
+● Qué problema tenía la página:
+
+La pagina era muy basica, no contaba con menu, formulario ni javascript
+
+● Qué mejoraron en UX:
+
+Mejoramos el diseño y la accesibilidad de la pagina
+
+● Qué mejoraron en UI
+
+Mejoramos el aspecto de los botenes y cuadros deinformacion 
+
+● Qué hicieron en accesibilidad
+
+Cambiamos los coleres, agregamos un menu y formulario, y organizamos mejor la informacion utilizando tarjetas
+
+● Qué hace el JavaScript
+
+ Valida el formulario

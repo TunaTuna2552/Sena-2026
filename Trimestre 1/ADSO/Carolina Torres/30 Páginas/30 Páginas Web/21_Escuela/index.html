@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escuela</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="encabezado">
+        <div class="titulo">Centro de Biotecnología Agropecuario</div>
+        <div class="menu">
+            <div class="enlace" onclick="mostrar('programas')">Programas</div>
+            <div class="enlace" onclick="mostrar('noticias')">Noticias</div>
+        </div>
+    </div>
+
+    <div id="programas" class="contenedor">
+        <div class="subtitulo">Nuestros Programas Académicos</div>
+        
+        <div class="tarjeta">
+            <div class="nombre">Ingeniería de Software</div>
+            <div class="detalle">Desarrollo de aplicaciones, bases de datos y sistemas en la nube.</div>
+        </div>
+        
+        <div class="tarjeta">
+            <div class="nombre">Diseño Digital</div>
+            <div class="detalle">Creación visual, edición de video y experiencia de usuario (UX).</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Administración de Empresas</div>
+            <div class="detalle">Gestión de recursos, liderazgo de equipos y finanzas corporativas.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Marketing Digital</div>
+            <div class="detalle">Estrategias en redes sociales, SEO y análisis de mercado.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Ciberseguridad</div>
+            <div class="detalle">Protección de redes, ética hacker y seguridad de la información.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Inteligencia Artificial</div>
+            <div class="detalle">Modelado de datos, redes neuronales y automatización avanzada.</div>
+        </div>
+    </div>
+
+    <div id="noticias" class="contenedor" style="display:none">
+        <div class="subtitulo">Últimas Noticias y Eventos</div>
+        
+        <div class="tarjeta">
+            <div class="nombre">Inscripciones 2026 Abiertas</div>
+            <div class="detalle">El proceso de admisión inicia este lunes 15 para todas las carreras.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Nuevo Auditorio Principal</div>
+            <div class="detalle">Inauguramos un espacio moderno con capacidad para 500 personas.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Convenio con Empresas Tech</div>
+            <div class="detalle">Nuestros estudiantes podrán realizar prácticas en Google y Microsoft.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Ganadores del Torneo de Robótica</div>
+            <div class="detalle">El equipo de ingeniería obtuvo el primer lugar en la competencia nacional.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Taller de Habilidades Blandas</div>
+            <div class="detalle">Este viernes se realizará la charla sobre liderazgo y comunicación.</div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="nombre">Actualización de Biblioteca</div>
+            <div class="detalle">Se han añadido 500 nuevos títulos digitales a nuestra plataforma.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

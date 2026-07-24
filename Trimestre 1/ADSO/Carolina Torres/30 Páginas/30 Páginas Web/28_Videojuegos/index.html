@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Torneo League</title>
+</head>
+<body>
+    <div class="interfaz">
+        <div class="cabecera">
+            <div class="logo">SUPER TORNEO</div>
+            <div class="estado-torneo">Fase de Grupos - En Vivo</div>
+        </div>
+
+        <div class="seccion-titulo">Próximos Enfrentamientos</div>
+        <div class="lista-enfrentamientos">
+            <div class="duelo">
+                <div class="fecha">Hoy - 18:00</div>
+                <div class="vs">
+                    <div class="equipo">Cobra Kai</div>
+                    <div class="separador">VS</div>
+                    <div class="equipo">Dragones</div>
+                </div>
+            </div>
+
+            <div class="duelo">
+                <div class="fecha">Mañana - 20:00</div>
+                <div class="vs">
+                    <div class="equipo">Team Alpha</div>
+                    <div class="separador">VS</div>
+                    <div class="equipo">Lobos Reales</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="seccion-titulo">Resultados Recientes</div>
+        <div class="lista-resultados">
+            <div class="resultado-tarjeta">
+                <div class="marcador">
+                    <div class="equipo-fila ganador">
+                        <div class="nombre">Titanes</div>
+                        <div class="puntos">2</div>
+                    </div>
+                    <div class="equipo-fila">
+                        <div class="nombre">Fénix</div>
+                        <div class="puntos">1</div>
+                    </div>
+                </div>
+                <div class="etiqueta-ganador">GANADOR: TITANES</div>
+            </div>
+
+            <div class="resultado-tarjeta">
+                <div class="marcador">
+                    <div class="equipo-fila ganador">
+                        <div class="nombre">Viper Team</div>
+                        <div class="puntos">2</div>
+                    </div>
+                    <div class="equipo-fila">
+                        <div class="nombre">Cyber Punk</div>
+                        <div class="puntos">0</div>
+                    </div>
+                </div>
+                <div class="etiqueta-ganador">GANADOR: VIPER TEAM</div>
+            </div>
+        </div>
+
+        <div class="registro-rapido">
+            <div class="mini-titulo">Añadir resultado rápido</div>
+            <div class="fila-input">
+                <input type="text" id="nombre-ganador" placeholder="Nombre del equipo ganador">
+                <button onclick="nuevo()">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

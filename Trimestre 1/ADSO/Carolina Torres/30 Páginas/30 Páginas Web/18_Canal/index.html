@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow - YouTube</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://grupocga.wordpress.com/wp-content/uploads/2015/07/sena.png">
+</head>
+<body>
+    <header class="cabecera-canal">
+        <div class="portada"></div>
+        <div class="info-canal">
+            <img src="logo.png" alt="Avatar" class="foto-perfil">
+            <div class="datos">
+                <h1>TechFlow</h1>
+                <p>@TechFlowOficial • 1.2M suscriptores • 450 videos</p>
+                <button class="boton-sub">Suscribirse</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="pestanas">
+        <button class="activo">Inicio</button>
+        <button>Videos</button>
+        <button>Directos</button>
+        <button>Comunidad</button>
+    </nav>
+
+    <main class="rejilla-videos">
+        <div class="tarjeta-video" data-video="vid\YTDown.com_YouTube_El-Futuro-de-la-IA-7-Predicciones-Impact_Media_qcvGayjTORY_003_480p.mp4">
+            <img src="https://it-nova.co/wp-content/uploads/inteligencia-artificial-2-768x456.jpg" alt="Video">
+            <h3>El futuro de la IA en 2026</h3>
+            <p>500k vistas • hace 2 días</p>
+        </div>
+        <div class="tarjeta-video" data-video="vid\YTDown.com_YouTube_Mi-Setup-Minimalista-simple-de-Productiv_Media_ValMUqOi8H4_003_480p.mp4"">
+            <img src="https://i.ytimg.com/vi/ValMUqOi8H4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB4d3Wa3-s-JCxvuc1EvAiXsXNY6w" alt="Video">
+            <h3>Setup Minimalista para Programar</h3>
+            <p>1.2M vistas • hace 1 mes</p>
+        </div>
+        <div class="tarjeta-video" data-video="vid\YTDown.com_YouTube_Media_BGS5vh7vdy0_003_480p.mp4">
+            <img src="https://i.blogs.es/69de7a/samsung-odyssey-g9-3/450_1000.jpg" alt="Video">
+            <h3>Review: El nuevo monitor curvo</h3>
+            <p>85k vistas • hace 5 horas</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://interactive-examples.mdn.mozilla.net">
+            <img src="https://facialix.com/wp-content/uploads/2024/02/javascript-curso-principiantes-gratis.jpg" alt="Video">
+            <h3>Curso de JavaScript desde Cero</h3>
+            <p>2M vistas • hace 1 año</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://www.w3schools.com">
+            <img src="https://i.ytimg.com/vi/yGO8ivccqOE/sddefault.jpg" alt="Video">
+            <h3>Cómo viajar siendo Tech Nomad</h3>
+            <p>150k vistas • hace 3 semanas</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://www.w3schools.com">
+            <img src="https://i.ytimg.com/vi/mV5EHuLiOiA/maxresdefault.jpg" alt="Video">
+            <h3>Mi historia en el desarrollo Web</h3>
+            <p>300k vistas • hace 6 meses</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://vjs.zencdn.net">
+            <img src="https://i.ytimg.com/vi/UYTh0CKRGzA/maxresdefault.jpg" alt="Video">
+            <h3>Nuevas herramientas para 2026</h3>
+            <p>120k vistas • hace 1 día</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://interactive-examples.mdn.mozilla.net">
+            <img src="https://www.facturadirecta.com/images/blog/habitos-productividad_hu_febd36bbdcfd711e.webp" alt="Video">
+            <h3>Trucos de Productividad</h3>
+            <p>45k vistas • hace 10 horas</p>
+        </div>
+        <div class="tarjeta-video" data-video="vid/YTDown.com_YouTube_CUAL-es-la-DIFERENCIA-entre-un-DESARROLL_Media_i9M7gdzlA7I_001_1080p.mp4">
+            <img src="https://i.ytimg.com/vi/i9M7gdzlA7I/maxresdefault.jpg" alt="Video">
+            <h3>Backend vs Frontend: ¿Cuál elegir?</h3>
+            <p>900k vistas • hace 8 meses</p>
+        </div>
+        <div class="tarjeta-video" data-video="https://www.w3schools.com">
+            <img src="https://i.ytimg.com/vi/2SGsimhQMd0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAaVYcVXQRRFKT18p2BC7AUwcbFHQ" alt="Video">
+            <h3>Un día como Desarrollador</h3>
+            <p>60k vistas • hace 4 días</p>
+        </div>
+    </main>
+
+    <div id="reproductor" class="reproductor-oscuro">
+        <div class="contenedor-reproductor">
+            <span class="cerrar-reproductor">&times;</span>
+            <video id="video-activo" controls></video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

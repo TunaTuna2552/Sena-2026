@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.presentacion {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 60px 20px;
+}
+
+.servicios {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: white;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.bloque-info {
+    max-width: 400px;
+    text-align: left;
+}
+
+.encabezado-planes {
+    margin-top: 50px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.destacado {
+    border: 3px solid #ff4757;
+    transform: scale(1.05);
+}
+
+.precio {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff4757;
+    margin: 20px 0;
+}
+
+.lista div {
+    margin: 12px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+button {
+    background-color: #2f3542;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #ff4757;
+}
+
+.pie {
+    background: #1a1a1a;
+    color: white;
+    padding: 30px;
+    margin-top: 50px;
+    font-size: 14px;
+}

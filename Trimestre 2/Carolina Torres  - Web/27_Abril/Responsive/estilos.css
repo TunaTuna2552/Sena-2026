@@ -1,0 +1,51 @@
+/* estilos.css: archivo separado para estilos */
+
+/* Normalizamos márgenes y definimos la tipografía */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Encabezado y pie de página */
+.header, .footer {
+  background-color: #003366;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Contenedor principal usa Flexbox */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* permite que los elementos pasen a la siguiente línea */
+  width: 90%;
+  margin: 2rem auto;
+  gap: 1rem;
+}
+
+/* Estilos para las columnas */
+.col {
+  flex: 1 1 calc(50% - 1rem); /* cada columna ocupa la mitad menos el espacio del gap */
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Colores distintos para distinguir las columnas (opcional) */
+.col-left { background-color: #e0f7fa; }
+.col-right { background-color: #fff9c4; }
+
+/* Media query para hacer las columnas responsive */
+@media (max-width: 768px) {
+  .col {
+    flex: 1 1 100%; /* en pantallas estrechas las columnas ocupan todo el ancho */
+  }
+}

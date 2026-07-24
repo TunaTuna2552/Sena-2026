@@ -1,0 +1,21 @@
+Explicar:
+● Qué problema tenía la página
+
+El mal uso de espacios para organizar la información,  no tenia menú, formulario y javascript
+
+● Qué mejoraron en UX
+
+La navegación y mejoramos la organización visual
+
+● Qué mejoraron en UI
+
+Añadimos títulos para las secciones y mejoramos el espacio entre las tarjetas de informacion 
+
+● Qué hicieron en accesibilidad
+
+El formulario, el uso de alt en imágenes y organizamos la información mediante títulos  
+
+● Qué hace el JavaScript
+
+Validar el formulario 
+

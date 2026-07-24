@@ -1,0 +1,20 @@
+Explicar:
+● Qué problema tenía la página:
+
+La pagina no tenía imágenes, menu de navegación y formulario, y su diseño era muy básico
+
+● Qué mejoraron en UX:
+
+Se añadió un menú de navegación , un formulario y una mejor organizacion 
+
+● Qué mejoraron en UI
+
+Agregamos imágenes para los lugares y se mejoraron los espacios y tipografías.
+
+● Qué hicieron en accesibilidad
+
+Se usaron etiquetas las header, nav, main y se añadió texto descriptivo (alt) a las imágenes
+
+● Qué hace el JavaScript
+
+Valida el formulario 

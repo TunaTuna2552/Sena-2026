@@ -1,0 +1,8 @@
+Temas:
+	1. Sección inicial............................Michel
+	2. Sección inicio de sesión / crear cuenta....io
+	3. Sección de cursos y planes.................Tatiana
+	4. Pasarela de pagos..........................David
+	5. Sección de estudiante......................Sara
+	6. Sección de profesor........................Pablo
+	7. Sección de ajustes.........................Velasco

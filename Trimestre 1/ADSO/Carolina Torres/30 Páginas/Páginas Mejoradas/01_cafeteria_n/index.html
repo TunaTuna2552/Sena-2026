@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería Lupita | Tradición en cada sorbo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Encabezado con la estructura solicitada -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">Cafetería Lupita</div>
+            <ul class="nav-links">
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="hero-text">
+            <h1>Cafetería Lupita</h1>
+            <p>Donde el café se escucha y el alma descansa</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Historia -->
+        <section id="historia" class="container-section">
+            <h2 class="titulo-seccion">Nuestra Esencia</h2>
+            <div class="card-box">
+                <p class="texto-historia">
+                    En el pueblo de <strong>Santa María del Aroma</strong>, nadie sabía cuántos años tenía Lupita. Algunos decían que vio pasar el cometa Halley sentada en su mecedora; otros juraban que el vapor de su cafetera era el que formaba las nubes del cielo. 
+                    <br><br>
+                    Lupita no usaba básculas ni termómetros. Ella decía que <em>"el café se escucha"</em>. Si el grano chirriaba al molerse, alguien tendría una buena noticia; si el agua hervía con burbujas grandes, era señal de que un viejo amor regresaría por la tarde. 
+                    <br><br>
+                    Su cafetería se fundó en un rincón de su cocina, con solo tres sillas y un aroma que te abrazaba como un suéter de lana en invierno. Hoy, conservamos su delantal y una regla inquebrantable: <strong>aquí se viene a charlar, no a mirar el celular.</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Sección Menú -->
+        <section id="menu" class="container-section">
+            <h2 class="titulo-seccion">Nuestra Carta</h2>
+            <div class="grid-menu">
+                <article class="card-menu">
+                    <h3>☕ Para el Alma</h3>
+                    <ul>
+                        <li><strong>El Mejunje de la Suerte:</strong> $6.000</li>
+                        <li><strong>Espresso "Mal de Amores":</strong> $5.000</li>
+                        <li><strong>Latte "Nube de Santa María":</strong> $6.000</li>
+                        <li><strong>Chocolate "Beso de Abuela":</strong> $6.500</li>
+                    </ul>
+                </article>
+                <article class="card-menu">
+                    <h3>❄️ Para el Calor</h3>
+                    <ul>
+                        <li><strong>Frappé "Chisme Calentito":</strong> $7.000</li>
+                        <li><strong>Infusión "Suspiro de Tarde":</strong> $5.000</li>
+                        <li><strong>Cold Brew "El Sereno":</strong> $5.000</li>
+                    </ul>
+                </article>
+                <article class="card-menu">
+                    <h3>🥐 Del Horno</h3>
+                    <ul>
+                        <li><strong>Concha "Corazón Contento":</strong> $5.000</li>
+                        <li><strong>Rol de Canela "El Enredado":</strong> $6.000</li>
+                        <li><strong>Torta "La Consentida":</strong> $15.000</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="container-section">
+            <h2 class="titulo-seccion">Escríbenos</h2>
+            <div class="card-box">
+                <form id="formContacto">
+                    <div class="input-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="¿Cómo te llamas?">
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Correo:</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@correo.com">
+                    </div>
+                    <button type="submit" id="btnEnviar">Enviar mensaje</button>
+                </form>
+                <div id="mensajeExito" class="hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>📍 Calle de los Suspiros, Santa María del Aroma.</p>
+        <div class="socials">
+            <a href="https://www.instagram.com/?hl=es"><img src="img/ig.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@lupitacafeteria"><img src="img/tiktok.webp" alt="TikTok"></a>
+        </div>
+        <p class="copyright">&copy; 2026 Cafetería Lupita. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

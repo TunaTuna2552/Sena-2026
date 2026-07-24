@@ -1,0 +1,28 @@
+RAP: Codificar el Software de acuerdo con el diseño establecido.
+--------------------------------------------------------------------------------
+Sistema: Es un conjunto de elementos que interactúan entre si para lograr un objetivo común.
+--------------------------------------------------------------------------------
+Sinergia: Grado de armonía entre los elementos de un sistema.
+
+Entropía: Grado de desorden que existe dentro de un  sistema. CAOS
+--------------------------------------------------------------------------------
+Pseudocódigo
+
+Entrada - Proceso - Salida
+
+INICIO
+
+	Entrada -> lea b, h
+	Proceso -> A = b*h/2
+	Salida -> Imprima A
+FIN
+--------------------------------------------------------------------------------
+Tipos de datos 
+
+	Datos lógicos = Booleanos (True - False)
+	Carácter = Símbolos
+	Cadena = Conjunto de caracteres
+
+	Numéricos
+		Enteros
+		Decimales o reales

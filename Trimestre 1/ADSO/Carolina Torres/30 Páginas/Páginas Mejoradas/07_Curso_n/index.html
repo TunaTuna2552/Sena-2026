@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Virtual: Desarrollo Web Moderno</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Curso Virtual: Especialización en HTML5</h1>
+        <nav>
+            <ul>
+                <li><a href="#detalles">Detalles</a></li>
+                <li><a href="#programa">Programa</a></li>
+                <li><a href="#contacto">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="detalles">
+            <h2>Detalles del Curso</h2>
+            <div class="detalles-contenedor">
+                <div class="detalle-ficha">
+                    <h3>Objetivo Principal</h3>
+                    <p>Dominar la estructura semántica de HTML5 para crear sitios web profesionales, accesibles y optimizados para SEO desde cero.</p>
+                </div>
+                <div class="detalle-ficha">
+                    <h3>Requisitos Técnicos</h3>
+                    <p>No requiere experiencia previa. Solo necesitas una computadora con Windows, Mac o Linux y el editor Visual Studio Code instalado.</p>
+                </div>
+                <div class="detalle-ficha">
+                    <h3>Perfil del Egresado</h3>
+                    <p>Al finalizar, podrás maquetar interfaces complejas, entender la jerarquía de etiquetas y preparar proyectos para ser estilizados con CSS.</p>
+                </div>
+                <div class="detalle-ficha">
+                    <h3>Metodología</h3>
+                    <p>40 horas de contenido práctico asincrónico. Incluye ejercicios reales, material de lectura PDF y acceso a foros de consulta.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="programa">
+            <h2>Contenido del Programa</h2>
+            <div class="tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Módulo</th>
+                            <th>Temario Clave</th>
+                            <th>Duración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Módulo 1: Introducción</td><td>Historia, etiquetas raíz y estructura de archivos.</td><td>5 horas</td></tr>
+                        <tr><td>Módulo 2: Semántica</td><td>Navegación, secciones y optimización SEO.</td><td>10 horas</td></tr>
+                        <tr><td>Módulo 3: Interacción</td><td>Formularios complejos, validaciones y tablas.</td><td>15 horas</td></tr>
+                        <tr><td>Módulo 4: Multimedia</td><td>Audio, video e imágenes responsivas.</td><td>10 horas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+<section id="contacto">
+            <h2>¡Inscríbete ahora!</h2>
+            <form id="formulario">
+                <div class="campo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="campo">
+                    <label for="email">Correo:</label>
+                    <input type="email" id="email" required placeholder="tu@correo.com">
+                </div>
+                <button type="submit" id="btnEnviar">Asegurar mi cupo</button>
+                <p id="mensaje" class="oculto"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Plataforma de Educación SENA | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

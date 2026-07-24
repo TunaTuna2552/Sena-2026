@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DexSync Portal — Simulador 3D de prótesis robótica y tienda de componentes." />
+  <title>DexSync — Portal del Usuario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Portal Layout ── */
+    .portal-page { display: flex; min-height: 100vh; background: var(--slate-50); }
+
+    .portal-sidebar {
+      width: 260px;
+      background: var(--dx-950);
+      color: #fff;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 40;
+      transition: transform 0.3s ease;
+    }
+
+    .portal-sidebar .sidebar-brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      padding-left: 0.5rem;
+    }
+
+    .sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: 0.5rem;
+      color: var(--dx-200);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .sidebar-link.active { background: var(--dx-600); color: #fff; font-weight: 600; }
+    .sidebar-link .link-icon { font-size: 1.1rem; }
+
+    .sidebar-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+
+    .sidebar-user {
+      font-size: 0.8125rem;
+      color: var(--dx-300);
+      padding: 0.5rem 0.75rem;
+      word-break: break-all;
+    }
+
+    .portal-main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 2rem;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .portal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .portal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .portal-subtitle {
+      font-size: 0.875rem;
+      color: var(--slate-500);
+      margin-top: 0.25rem;
+    }
+
+    /* ── Tab system ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+    /* ── Simulator section ── */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .sim-canvas-wrap {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Medidor de Presión (HU14) */
+    .grip-meter {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(4px);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      min-width: 150px;
+    }
+
+    .grip-meter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .grip-meter-bar {
+      height: 8px;
+      background: var(--slate-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .grip-meter-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--dx-500);
+      transition: width 0.1s, background-color 0.3s;
+    }
+
+    #hand-sim-canvas {
+      width: 100%;
+      height: 500px;
+    }
+
+    .sim-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--slate-100);
+      background: var(--slate-50);
+    }
+
+    .sim-controls {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem;
+      max-height: 580px;
+      overflow-y: auto;
+    }
+
+    .sim-controls h3 {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    .sim-finger-group { margin-bottom: 1.25rem; }
+
+    .sim-finger-group h4 {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--dx-700);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sim-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .sim-slider-label {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .sim-slider-row input[type="range"] {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--slate-200);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .sim-slider-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--dx-600);
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: grab;
+    }
+
+    .sim-slider-row input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--dx-600);
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: grab;
+    }
+
+    .sim-slider-val {
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      font-weight: 600;
+      width: 32px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* Color swatches */
+    .color-swatches {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .color-swatch:hover { transform: scale(1.15); }
+
+    .color-swatch.active {
+      border-color: var(--dx-600);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+    }
+
+    /* ── Shop section ── */
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .shop-card {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .shop-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .shop-card-body {
+      padding: 1rem 1.25rem;
+    }
+
+    .shop-card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 0.25rem;
+    }
+
+    .shop-card-desc {
+      font-size: 0.8125rem;
+      color: var(--slate-500);
+      margin-bottom: 0.75rem;
+      line-height: 1.45;
+    }
+
+    .shop-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .shop-card-price {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dx-700);
+    }
+
+    .shop-add-btn {
+      background: var(--dx-600);
+      color: #fff;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .shop-add-btn:hover { background: var(--dx-700); }
+
+    /* Cart sidebar */
+    .cart-sidebar {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    .cart-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .cart-badge {
+      background: var(--dx-600);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--slate-50);
+      position: relative;
+    }
+
+    .cart-item-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.375rem;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cart-item-price {
+      font-size: 0.75rem;
+      color: var(--dx-600);
+      font-weight: 600;
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    .qty-btn {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--slate-200);
+      background: var(--slate-50);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--slate-600);
+      transition: all 0.15s ease;
+    }
+
+    .qty-btn:hover { background: var(--slate-100); }
+
+    .cart-item-remove {
+      position: absolute;
+      top: 0.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--slate-400);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0.25rem;
+      transition: color 0.15s ease;
+    }
+
+    .cart-item-remove:hover { color: #dc2626; }
+
+    .cart-empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--slate-400);
+      font-size: 0.875rem;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0 0.75rem;
+      border-top: 2px solid var(--slate-100);
+      margin-top: 0.5rem;
+    }
+
+    .cart-total-label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+
+    .cart-total-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dx-700);
+    }
+
+    /* ── Mobile sidebar toggle ── */
+    .portal-mobile-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+      background: var(--dx-600);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 50;
+      transition: all 0.2s ease;
+    }
+
+    .portal-mobile-toggle:hover { background: var(--dx-700); transform: scale(1.05); }
+
+    /* ── Manual section ── */
+    .manual-section {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      padding: 2rem;
+      max-width: 700px;
+    }
+
+    .manual-section h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 1rem;
+    }
+
+    .manual-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--slate-100);
+      border-radius: 0.625rem;
+      transition: all 0.2s ease;
+    }
+
+    .manual-item:hover {
+      border-color: var(--dx-200);
+      background: var(--dx-50);
+    }
+
+    .manual-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .manual-info { flex: 1; }
+
+    .manual-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--slate-800);
+    }
+
+    .manual-desc {
+      font-size: 0.8125rem;
+      color: var(--slate-500);
+      margin-top: 0.15rem;
+    }
+
+    .manual-download {
+      background: var(--dx-600);
+      color: #fff;
+      border: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 0.375rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .manual-download:hover { background: var(--dx-700); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1023px) {
+      .portal-sidebar { transform: translateX(-100%); }
+      .portal-sidebar.open { transform: translateX(0); }
+      .portal-main { margin-left: 0; }
+      .portal-mobile-toggle { display: flex; align-items: center; justify-content: center; }
+      .sim-layout { grid-template-columns: 1fr; }
+      .shop-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767px) {
+      .portal-main { padding: 1rem; }
+      #hand-sim-canvas { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-page">
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <aside id="portal-sidebar" class="portal-sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⚙</span> Dex<span style="color:var(--dx-400)">Sync</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link active" onclick="switchTab('simulator', this, event)">
+          <span class="link-icon">🤖</span> Simulador 3D
+        </a>
+        <a href="#" class="sidebar-link" onclick="switchTab('shop', this, event)">
+          <span class="link-icon">🛒</span> Tienda
+        </a>
+        <a href="#" class="sidebar-link" onclick="switchTab('manuals', this, event)">
+          <span class="link-icon">📄</span> Manuales
+        </a>
+        <a href="index.html" class="sidebar-link">
+          <span class="link-icon">🏠</span> Ir al Inicio
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user" id="sidebar-user">demo@dexsync.com</div>
+        <a href="#" class="sidebar-link" onclick="Auth.logout(); return false;">
+          <span class="link-icon">🚪</span> Cerrar Sesión
+        </a>
+      </div>
+    </aside>
+
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <main class="portal-main">
+
+      <!-- ─── TAB: Simulator ─── -->
+      <div id="tab-simulator" class="tab-content active">
+        <div class="portal-header">
+          <div>
+            <h1 class="portal-title">Simulador 3D</h1>
+            <p class="portal-subtitle">Manipula cada articulación de la prótesis DexSync en tiempo real.</p>
+          </div>
+        </div>
+
+        <div class="sim-layout">
+          <!-- Canvas -->
+          <div class="sim-canvas-wrap">
+            <div id="hand-sim-canvas"></div>
+            
+
+            <div class="sim-toolbar">
+              <button class="btn btn-sm btn-outline" onclick="HandSimulator.reset()">↺ Reiniciar</button>
+            </div>
+          </div>
+
+          <!-- Controls panel -->
+          <div class="sim-controls">
+            <h3>🎛️ Controles de Articulación</h3>
+
+            <!-- Wrist -->
+            <div class="sim-finger-group">
+              <h4>🦴 Muñeca</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label">P</span>
+                <input type="range" id="sim-wrist-pitch" min="-45" max="45" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-wrist-pitch">0°</span>
+              </div>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label">Y</span>
+                <input type="range" id="sim-wrist-yaw" min="-30" max="30" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-wrist-yaw">0°</span>
+              </div>
+            </div>
+
+            <!-- Pulgar -->
+            <div class="sim-finger-group">
+              <h4>👍 Pulgar</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label"></span>
+                <input type="range" id="sim-pulgar" min="0" max="90" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-pulgar">0°</span>
+              </div>
+            </div>
+
+            <!-- Índice -->
+            <div class="sim-finger-group">
+              <h4>☝️ Índice</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label"></span>
+                <input type="range" id="sim-indice" min="0" max="90" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-indice">0°</span>
+              </div>
+            </div>
+
+            <!-- Medio -->
+            <div class="sim-finger-group">
+              <h4>🖐️ Medio</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label"></span>
+                <input type="range" id="sim-medio" min="0" max="90" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-medio">0°</span>
+              </div>
+            </div>
+
+            <!-- Anular -->
+            <div class="sim-finger-group">
+              <h4>💍 Anular</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label"></span>
+                <input type="range" id="sim-anular" min="0" max="90" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-anular">0°</span>
+              </div>
+            </div>
+
+            <!-- Meñique -->
+            <div class="sim-finger-group">
+              <h4>🤙 Meñique</h4>
+              <div class="sim-slider-row">
+                <span class="sim-slider-label"></span>
+                <input type="range" id="sim-menique" min="0" max="90" value="0" step="1" />
+                <span class="sim-slider-val" id="sim-val-menique">0°</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TAB: Shop ─── -->
+      <div id="tab-shop" class="tab-content">
+        <div class="portal-header">
+          <div>
+            <h1 class="portal-title">Tienda de Componentes</h1>
+            <p class="portal-subtitle">Adquiere repuestos y accesorios para tu prótesis DexSync.</p>
+          </div>
+        </div>
+
+        <div class="shop-layout">
+          <div id="shop-products" class="shop-grid">
+            <!-- Products rendered by JS -->
+          </div>
+
+          <div class="cart-sidebar">
+            <div class="cart-header">
+              <h3>🛒 Carrito</h3>
+              <span class="cart-badge" id="cart-count" style="display:none">0</span>
+            </div>
+            <div id="cart-items"></div>
+            <div id="cart-empty" class="cart-empty">Tu carrito está vacío</div>
+            <div class="cart-total-row">
+              <span class="cart-total-label">Total:</span>
+              <span class="cart-total-value" id="cart-total">$0</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary" style="width:100%; margin-top:0.75rem;" onclick="Shop.checkout()" disabled>
+              Realizar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TAB: Manuals ─── -->
+      <div id="tab-manuals" class="tab-content">
+        <div class="portal-header">
+          <div>
+            <h1 class="portal-title">Manuales y Documentación</h1>
+            <p class="portal-subtitle">Descarga guías de uso, mantenimiento y especificaciones técnicas.</p>
+          </div>
+        </div>
+
+        <div class="manual-section">
+          <h3>📚 Documentos Disponibles</h3>
+          <div class="manual-list">
+            <div class="manual-item">
+              <span class="manual-icon">📘</span>
+              <div class="manual-info">
+                <div class="manual-title">Manual de Usuario DexSync v2.0</div>
+                <div class="manual-desc">Guía completa de uso, calibración y cuidados de la prótesis.</div>
+              </div>
+              <a href="#" class="manual-download" onclick="Toast.show('Descarga iniciada — Manual de Usuario'); return false;">Descargar</a>
+            </div>
+            <div class="manual-item">
+              <span class="manual-icon">🔧</span>
+              <div class="manual-info">
+                <div class="manual-title">Guía de Mantenimiento</div>
+                <div class="manual-desc">Procedimientos de limpieza, lubricación y reemplazo de piezas.</div>
+              </div>
+              <a href="#" class="manual-download" onclick="Toast.show('Descarga iniciada — Guía de Mantenimiento'); return false;">Descargar</a>
+            </div>
+            <div class="manual-item">
+              <span class="manual-icon">📋</span>
+              <div class="manual-info">
+                <div class="manual-title">Especificaciones Técnicas</div>
+                <div class="manual-desc">Datasheet completo con parámetros eléctricos, mecánicos y de software.</div>
+              </div>
+              <a href="#" class="manual-download" onclick="Toast.show('Descarga iniciada — Especificaciones'); return false;">Descargar</a>
+            </div>
+            <div class="manual-item">
+              <span class="manual-icon">🩺</span>
+              <div class="manual-info">
+                <div class="manual-title">Guía de Rehabilitación</div>
+                <div class="manual-desc">Plan progresivo de ejercicios para adaptación a la prótesis.</div>
+              </div>
+              <a href="#" class="manual-download" onclick="Toast.show('Descarga iniciada — Guía de Rehabilitación'); return false;">Descargar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="portal-mobile-toggle" id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- Order confirmation modal -->
+  <div id="order-modal" class="modal-overlay" style="display:none;">
+    <div class="modal">
+      <div class="modal-header"><h3>✅ Pedido Confirmado</h3></div>
+      <div class="modal-body">
+        <p>Tu pedido ha sido procesado correctamente.</p>
+        <p class="modal-ref">Referencia: <strong id="order-ref">ORD-000000</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="Shop.closeOrderModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast-container" style="display:none;">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="app.js"></script>
+  <script src="simulator.js"></script>
+  <script>
+    /* Guard — redirect to login if not authenticated */
+    Auth.guardPortal();
+
+    /* Show user email */
+    const userEl = document.getElementById('sidebar-user');
+    if (userEl) userEl.textContent = Auth.getUser();
+
+    /* Initialize simulator */
+    HandSimulator.init();
+
+    /* Render shop products */
+    function renderShopProducts() {
+      const grid = document.getElementById('shop-products');
+      if (!grid) return;
+      grid.innerHTML = '';
+      Shop.products.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = 'shop-card';
+        card.innerHTML = `
+          <img src="${prod.image}" alt="${prod.name}" class="shop-card-img" loading="lazy" />
+          <div class="shop-card-body">
+            <div class="shop-card-name">${prod.name}</div>
+            <div class="shop-card-desc">${prod.desc}</div>
+            <div class="shop-card-footer">
+              <span class="shop-card-price">${COP.format(prod.price)}</span>
+              <button class="shop-add-btn" onclick="Shop.addToCart(${prod.id})">+ Añadir</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    renderShopProducts();
+
+    /* Tab switching */
+    function switchTab(tabId, linkEl, event) {
+      if (event) event.preventDefault();
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+      const tab = document.getElementById('tab-' + tabId);
+      if (tab) tab.classList.add('active');
+      if (linkEl) linkEl.classList.add('active');
+
+      /* Close mobile sidebar */
+      const sidebar = document.getElementById('portal-sidebar');
+      if (sidebar && window.innerWidth < 1024) sidebar.classList.remove('open');
+    }
+
+    /* Mobile sidebar toggle */
+    function toggleSidebar() {
+      const sidebar = document.getElementById('portal-sidebar');
+      if (sidebar) sidebar.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

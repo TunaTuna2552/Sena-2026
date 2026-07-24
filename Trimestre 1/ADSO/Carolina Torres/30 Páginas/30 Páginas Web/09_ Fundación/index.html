@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundación Manos Abiertas - Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="encabezado">
+        <div class="navegacion">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#mision">Misión y Visión</a></li>
+                <li><a href="#proyectos">Proyectos Actuales</a></li>
+                <li><a href="#donar">Cómo Ayudar</a></li>
+            </ul>
+        </div>
+        <h1>Fundación Manos Abiertas</h1>
+        <p>Trabajando por un futuro con igualdad de oportunidades.</p>
+    </div>
+
+    <hr>
+
+    <div class="seccion" id="mision">
+        <h2>Nuestra Identidad</h2>
+        <div class="articulo">
+            <h3>Misión</h3>
+            <p>Brindar apoyo integral a comunidades en situación de vulnerabilidad mediante programas de educación, salud y nutrición, fomentando el desarrollo autosostenible.</p>
+        </div>
+        <div class="articulo">
+            <h3>Visión</h3>
+            <p>Para el año 2030, ser referentes nacionales en la reducción de la brecha educativa y la erradicación del hambre infantil en las zonas rurales.</p>
+        </div>
+    </div>
+
+    <div class="seccion" id="proyectos">
+        <h2>Proyectos en Curso</h2>
+        <ul>
+            <li>
+                <strong>Proyecto "Semillas de Saber":</strong> Construcción de bibliotecas comunitarias en la periferia de la ciudad.
+            </li>
+            <li>
+                <strong>Brigadas de Salud Móvil:</strong> Atención médica y odontológica gratuita para adultos mayores.
+            </li>
+            <li>
+                <strong>Huertas Urbanas:</strong> Capacitación en cultivo de alimentos para el autoconsumo familiar.
+            </li>
+        </ul>
+    </div>
+
+    <div class="seccion" id="donar">
+        <h2>Únete a nuestra causa</h2>
+        <p>Tu contribución permite que sigamos transformando vidas. Puedes ayudar de las siguientes formas:</p>
+        
+        <h3>1. Donación Económica</h3>
+        <p>Elige el monto que deseas aportar mensualmente:</p>
+        <form action="/procesar-donacion" method="POST">
+            <input type="radio" id="monto1" name="monto" value="10">
+            <label for="monto1">$10 USD</label><br>
+            <input type="radio" id="monto2" name="monto" value="50">
+            <label for="monto2">$50 USD</label><br>
+            <input type="radio" id="monto3" name="monto" value="otro">
+            <label for="monto3">Otro valor</label><br><br>
+            
+            <button type="submit" class="boton">DONAR AHORA</button>
+        </form>
+
+        <h3>2. Voluntariado</h3>
+        <p>Si deseas donar tu tiempo, completa el siguiente formulario:</p>
+        <form action="/registro-voluntarios" method="POST">
+            <label for="nombre">Nombre completo:</label><br>
+            <input type="text" id="nombre" name="nombre" class="entrada" required><br>
+            
+            <label for="area">Área de interés:</label><br>
+            <select id="area" name="area" class="entrada">
+                <option value="educacion">Educación</option>
+                <option value="logistica">Logística</option>
+                <option value="salud">Salud</option>
+            </select><br><br>
+            
+            <button type="submit" class="boton">ENVIAR SOLICITUD</button>
+        </form>
+    </div>
+
+    <div class="pie-pagina">
+        <p><strong>Contacto:</strong> Calle 100 #15-20, Bogotá, Colombia | Tel: (601) 555-0199</p>
+        <p>&copy; 2024 Fundación Manos Abiertas. Todos los derechos reservados.</p>
+    </div>
+
+</body>
+</html>

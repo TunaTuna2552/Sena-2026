@@ -1,0 +1,72 @@
+body {
+	background-color: #d2b48c;
+}
+
+header {
+	background-image: url("img/cafe.webp");
+	min-height: 60vh; 
+}
+
+.historia {
+	border: 10px solid #cd853f;
+	border-radius: 10px;
+	background-color: #faebd7;
+	padding: 10px;
+	margin: 20px;
+	text-align: center;    
+}
+
+h1 {
+	color: white;
+	text-align: center;   
+	font-size: 1500%; 
+	margin: 0;
+}
+
+h2 {
+	text-align: center;    
+}
+
+.menu {
+	display: flex;
+	padding: 30px;
+	width: fit-content;
+	gap: 15px;
+	margin: 10px;
+}
+.menu_des {
+	border: 10px solid #cd853f;
+	border-radius: 10px;
+	background-color: #faebd7;
+}
+.bebidas_frias {
+	border: 10px solid #cd853f;
+	border-radius: 10px;
+	background-color: #faebd7;
+}
+.bebidas_calientes {
+	border: 10px solid #cd853f;
+	border-radius: 10px;
+	background-color: #faebd7;
+}
+
+.panaderia {
+	border: 10px solid #cd853f;
+	border-radius: 10px;
+	background-color: #faebd7;
+}
+
+img {
+	width: 4%;
+	border-radius: 30px;
+}
+footer {
+	background-color: #faebd7;
+	display:flex;
+	text-align: center;
+	padding: 10px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}

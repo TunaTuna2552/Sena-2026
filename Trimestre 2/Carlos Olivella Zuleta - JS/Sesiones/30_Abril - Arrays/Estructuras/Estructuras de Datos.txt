@@ -1,0 +1,10 @@
+ESTRUCTURA DE DATOS 
+
+    Son unidades de almacenamiento que permiten organizar almacenar datos y gestionarlos en la memoria RAM.
+
+    Se clasifican en cuatro tipos:
+
+        1. Pila
+        2. Cola
+        3. Colas circulares 
+        4. Bicolas

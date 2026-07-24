@@ -1,0 +1,123 @@
+body {
+    background: #0d0d12;
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.interfaz {
+    width: 600px;
+    padding: 20px;
+}
+
+.cabecera {
+    text-align: center;
+    background: linear-gradient(45deg, #1e1e26, #2d2d3a);
+    padding: 30px;
+    border-radius: 15px;
+    border-bottom: 4px solid #00f2ff;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.estado-torneo {
+    color: #00f2ff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.seccion-titulo {
+    margin: 30px 0 15px 0;
+    font-weight: bold;
+    font-size: 18px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.duelo {
+    background: #1a1a24;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.fecha {
+    font-size: 12px;
+    color: #ff9d00;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.vs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.separador {
+    font-style: italic;
+    color: #444;
+    font-weight: bold;
+}
+
+.resultado-tarjeta {
+    background: #1a1a24;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    border-left: 4px solid #4caf50;
+}
+
+.marcador {
+    padding: 15px;
+}
+
+.equipo-fila {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.ganador {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.etiqueta-ganador {
+    background: #4caf50;
+    color: black;
+    font-size: 11px;
+    text-align: center;
+    padding: 4px;
+    font-weight: bold;
+}
+
+.registro-rapido {
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+input {
+    background: #1a1a24;
+    border: 1px solid #333;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    width: 70%;
+}
+
+button {
+    padding: 10px;
+    background: #00f2ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}

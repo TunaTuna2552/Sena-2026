@@ -1,0 +1,34 @@
+body {
+	background-image: url("tienda.jpg");
+	display: grid;
+	place-items: center;
+}
+
+h1 {
+	font-family: "Lavishly Yours", cursive;
+	font-size: 800%;
+	font-style: normal;
+	text-shadow: 4px 4px 8px red; 
+}
+
+ul {
+	font-size: 300%;
+	font-family: "Imperial Script", cursive;
+	font-style: normal;
+	margin-top: 0;
+	padding-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+ul li::marker {
+	color: green;
+}
+
+.lista {
+	border: 10px solid #FFFACD;
+	border-radius: 10px;
+	background-color: #FFFACD;
+	padding: 0px 10px 10px 0px;
+
+}

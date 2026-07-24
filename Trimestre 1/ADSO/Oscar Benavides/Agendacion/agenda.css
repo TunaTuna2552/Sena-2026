@@ -1,0 +1,66 @@
+body{
+ font-family:cursive;
+ font-size:20pt;
+ background-color:#F2E1CB;
+}
+
+.banner, footer{
+ display: flex;
+ background-color: #E89851;
+ font-size: 20px;
+ justify-content: center;
+ align-items: center;
+}
+
+.uella{
+ width:3%;
+}
+
+.agenda{
+ text-align:center;
+ background:#9E8267;
+ padding:30px;
+ border-radius:30px;
+ width:300px;
+ box-shadow:0 20px 30px rgba(0,0,0,0.1);
+}
+
+.agenda h2{
+ margin-top:-10px;
+ font-size:22pt;
+}
+
+.raza{
+ width: 50px;
+ height: 17px;
+}
+
+.selec{
+ text-decoration:underline;
+ background-color:#F2E1CB;
+}
+
+option{
+ text-align:center;
+}
+
+.contenido{
+ display:flex;
+ justify-content:center;
+}
+
+img{
+ width:200%;
+ heigth:70px;
+}
+
+.imagen{
+ margin-left:25px;
+ display:flex;
+ justify-content:center;
+ background:#9E8267;
+ padding:30px;
+ border-radius:30px;
+ width:300px;
+ box-shadow:0 20px 30px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #fffcf0;
+}
+
+.navegacion-fija {
+    background: #3e2723;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.boton-atras {
+    cursor: pointer;
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+.titulo-tienda {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.contenedor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 5%;
+}
+
+.producto {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    width: 320px;
+}
+
+.foto {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.p1 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Miel-multifloral-con-fondo-rustico-768x768.jpg');
+}
+
+.p2 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Miel-de-eucalipto-con-fondo-rustico.jpg');
+}
+
+.p3 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Tarro-de-miel-de-azahar-con-fondo-rustico.jpg');
+}
+
+.p4 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Tarro-de-miel-de-acacia-con-fondo-rustico.jpg');
+}
+
+.p5 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Tarro-de-miel-de-albaida-con-fondo-rustico-768x768.jpg');
+}
+
+.p6 {
+    background-image: url('https://joyrasabornacional.com/wp-content/uploads/2025/01/Miel-de-limon-con-fondo-rustico-768x768.jpg');
+}
+
+.datos {
+    padding: 25px;
+    text-align: center;
+}
+
+.nombre {
+    font-size: 22px;
+    font-weight: 800;
+    color: #3e2723;
+}
+
+.info { font-size: 14px;
+    color: #8d6e63;
+    margin: 10px 0;
+}
+
+.precio {
+    font-size: 28px;
+    font-weight: 900;
+    color: #d48806;
+    margin-bottom: 20px;
+}
+
+.boton-comprar {
+    background: #f39c12;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-comprar:hover {
+    background: #3e2723;
+}
+
+.pie-pagina {
+    background-color: #3e2723;
+    padding: 40px 8%;
+    margin-top: 50px;
+    color: #f1c40f;
+}
+
+.contenido-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #5d4037;
+    padding-top: 20px;
+}
+
+.marca-pie {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.redes {
+    display: flex;
+    gap: 20px;
+}
+
+.icono-red a {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffff;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.icono-red a:hover {
+    color: #f1c40f;
+    transform: translateY(-2px);
+}
+
+.icono-red:hover {
+    color: white;
+}

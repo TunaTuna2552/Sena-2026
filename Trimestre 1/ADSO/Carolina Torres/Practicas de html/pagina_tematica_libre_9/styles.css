@@ -1,0 +1,64 @@
+body {
+    background-image: url("fondo.jpg");
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    min-height: 100vh;             
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    padding: 20px;
+    margin: 0;
+}
+
+
+.tit_1, .tit_2 {
+    background-color: #B0C4DE;
+    border-radius: 15px;
+    padding: 20px; 
+    width: fit-content;
+    max-width: 40%;
+
+}
+
+.tit_2 img  {
+    height: 150px;
+    width: auto;
+    vertical-align: middle;
+    margin-top: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.osa {
+    margin-right: 10px;
+}
+
+
+.tit_2 img:hover {
+    transform: scale(1.05);
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    width: 10%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 5px solid #b30000;
+    background-color: red;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.boton:hover {
+    transform: scale(1.1); 
+    background-color: #ff3333;
+}
+
+.boton:active { 
+    transform: scale(0.9); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

@@ -1,0 +1,17 @@
+Arrays
+
+Es un conjunto de elementos que se almacenan en un campo múltiple..
+La primera posición del array es 0.
+
+Hay dos forma para definir un array:
+
+    1. let nombreDelArray = ["","",""];
+    2. let nombreDelArray = new Array();
+
+
+
+
+Cuando los arrays tienen una sola dimensión se llaman vectores.
+
+Los arrays pueden tener más de una dimensión, es decir, matrices.
+Osea que cuando los arrays tienen más de una dimensión, se llaman matrices.

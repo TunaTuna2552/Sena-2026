@@ -1,0 +1,170 @@
+* { 
+	margin: 0; 
+	padding: 0; 
+	box-sizing: border-box; 
+}
+
+body { 
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+header { 
+	background-color: #1a2a6c; 
+	color: white; 
+	padding-bottom: 50px; 
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: rgba(0,0,0,0.1);
+}
+
+.logo { 
+	font-size: 1.5rem; 
+	font-weight: bold; 
+}
+
+.logo span { 
+	color: #4facfe; 
+}
+
+.navbar ul { 
+	display: flex; 
+	list-style: none; 
+	gap: 20px; 
+}
+
+.navbar a { 
+	color: white; 
+	text-decoration: none; 
+	font-weight: 500;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 10%;
+}
+
+.img_ava {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    border: 5px solid #fff;
+    object-fit: cover;
+}
+
+.info-section { 
+	padding: 60px 10%; 
+	text-align: center; 
+}
+
+.bg-alt { 
+	background-color: #eef2f7; 
+}
+
+.titulo { 
+    color: #1a2a6c; 
+    margin-bottom: 40px; 
+    display: inline-block;
+    border-bottom: 4px solid #4facfe;
+    padding-bottom: 5px;
+}
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.tar {
+    background: #ffffff;
+    padding: 40px 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid #4facfe;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tar:hover { 
+	transform: translateY(-10px); 
+}
+
+.tar h3 { 
+	color: #1a2a6c; 
+	margin-bottom: 15px; 
+	font-size: 1.3rem; 
+}
+
+.tar p { 
+	color: #555; 
+	font-size: 0.95rem; 
+}
+
+.formulario {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+label { 
+	font-weight: bold; 
+	color: #1a2a6c; 
+	display: block; 
+	margin-bottom: 5px; 
+}
+
+input, textarea { 
+	width: 100%; 
+	padding: 12px; 
+	margin-bottom: 20px; 
+	border: 1px solid #ddd; 
+	border-radius: 6px; 
+}
+
+button { 
+	background: #1a2a6c; 
+	color: white; 
+	border: none; 
+	padding: 15px; 
+	width: 100%; 
+	cursor: pointer; 
+	border-radius: 6px; 
+	font-weight: bold; 
+}
+
+button:hover { 
+	background: #4facfe; 
+}
+
+.hidden { 
+	display: none; 
+}
+
+#responseMsg { 
+	margin-top: 15px; 
+	color: #28a745; 
+	text-align: center; 
+	font-weight: bold; 
+}
+
+footer { 
+	text-align: center; 
+	padding: 40px; 
+	background: #fff; 
+	color: #777; 
+}

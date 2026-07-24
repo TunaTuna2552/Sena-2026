@@ -1,0 +1,78 @@
+:root {
+    --bg-navbar: #c4cced; --bg-app: #e0e7ff; --bg-darker: #d1d9f5;
+    --orange-main: #ff9d5c; --orange-light: #ffccaa; --orange-border: #f18d4d;
+    --orange-icon: #ffccaa; --blue-active: #6d96eb; --division-color: #c4cced;
+}
+
+body { margin: 0; font-family: 'Segoe UI', sans-serif; height: 100vh; overflow: hidden; }
+.web-container, .barra-lateral, .chats, .icono, .chat-item, .chat-avatar, .main-content, .avatar { display: flex; }
+.web-container { width: 100vw; height: 100vh; }
+
+/* 1. Barra Lateral (Igual a Clases) */
+.barra-lateral { 
+    width: 90px; background: var(--bg-navbar); flex-direction: column; 
+    justify-content: space-between; padding: 30px 0; align-items: center; flex-shrink: 0; 
+}
+.menu { display: flex; flex-direction: column; gap: 25px; }
+.icono { 
+    width: 60px; height: 60px; border-radius: 18px; justify-content: center; 
+    align-items: center; cursor: pointer; transition: 0.3s; 
+}
+.icono img { width: 35px; opacity: 0.75; transition: 0.3s; }
+.icono:hover { background: rgba(255,255,255,0.5); transform: scale(1.1); }
+.icono.active { background: white; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+.icono.active img { opacity: 1; }
+
+/* Avatar Sincronizado */
+.avatar { 
+    width: 55px; height: 55px; background: var(--orange-border); border-radius: 50%; 
+    justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; 
+}
+.avatar:hover { transform: scale(1.1); background: var(--orange-main); box-shadow: 0 0 15px rgba(241,141,77,0.4); }
+.usuario { width: 35px; height: 35px; fill: var(--orange-icon); }
+
+/* 2. Panel de Chat */
+.chats { width: 400px; background: var(--bg-app); flex-direction: column; border-right: 1px solid var(--division-color); }
+.encabezado { padding: 40px 30px 25px; display: flex; justify-content: space-between; align-items: center; }
+.encabezado h1 { font-size: 28px; margin: 0; color: #333; font-weight: bold; }
+
+.division { border: none; border-top: 1px solid var(--division-color); margin: 0; width: 100%; }
+
+/* Pestañas y Botón + */
+.secciones { padding: 15px 25px; gap: 12px; display: flex; align-items: center; }
+.seccion-label { padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 12px; cursor: pointer; color: #666; transition: 0.3s; }
+.seccion-label:hover { background: var(--bg-darker); color: #333; }
+
+.agregar { 
+    background: none; border: none; font-size: 32px; font-weight: bold; cursor: pointer;
+    margin-left: auto; line-height: 1; transition: 0.4s; 
+}
+.agregar:hover { transform: rotate(90deg) scale(1.2); color: var(--orange-main); }
+
+/* Lógica de Selección */
+#seccion-todos:checked ~ .web-container .label-todos,
+#seccion-grupos:checked ~ .web-container .label-grupos { background: var(--blue-active); color: white; }
+
+.content-todos, .content-grupos { display: none; }
+#seccion-todos:checked ~ .web-container .content-todos, 
+#seccion-grupos:checked ~ .web-container .content-grupos { display: block; }
+
+/* Lista de Chats */
+.chat-list { flex: 1; padding: 15px 20px; overflow-y: auto; scrollbar-width: none; }
+.chat-list::-webkit-scrollbar { display: none; }
+
+.chat-item { 
+    background: var(--orange-light); padding: 18px; margin-bottom: 15px; border-radius: 25px;
+    align-items: center; box-shadow: 4px 4px 0px var(--orange-main); transition: 0.2s; 
+}
+.chat-item:hover { transform: translateX(8px); background: #ffd8bb; }
+.chat-avatar { width: 60px; height: 60px; background: var(--orange-main); margin-right: 18px; border-radius: 50%; justify-content: center; align-items: center; flex-shrink: 0; }
+.chat-avatar svg { width: 35px; fill: var(--orange-icon); }
+
+.chat-info { flex-direction: column; display: flex; }
+.user-name { font-weight: bold; font-size: 16px; color: #333; }
+.last-msg { font-size: 13px; color: #7a5e55; }
+
+/* 3. Área Principal */
+.main-content { flex: 1; background: #fcfdff; display: flex; justify-content: center; align-items: center; }
+.placeholder-msg { text-align: center; color: #bbb; }

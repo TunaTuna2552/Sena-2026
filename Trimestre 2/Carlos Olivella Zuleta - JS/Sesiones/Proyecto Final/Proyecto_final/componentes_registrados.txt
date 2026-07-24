@@ -1,0 +1,26 @@
+=== REPORTE DE COMPONENTES REGISTRADOS ===
+
+--- Registro #1 ---
+Componente: Procesador
+- Marca: AMD Ryzen
+- Modelo: AMD Ryzen 5
+- Gen: Serie 3000
+
+--- Registro #2 ---
+Componente: Tarjeta gráfica
+- Marca: AMD Radeon
+- Modelo: RX Serie 8000
+- Versión: XT
+
+--- Registro #3 ---
+Componente: Tarjeta gráfica
+- Marca: AMD Radeon
+- Modelo: RX Serie 8000
+- Versión: XT
+
+--- Registro #4 ---
+Componente: Tarjeta gráfica
+- Marca: AMD Radeon
+- Modelo: RX Serie 7000 (7600/7700/7800)
+- Versión: Estándar
+

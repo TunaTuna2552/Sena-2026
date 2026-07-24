@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Fotografía SENA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>F O T O G R A F I A</h1>
+        <p>Selección Estudiantes SENA 2025 - 2026</p>
+        <div class="filtros">
+            <button onclick="filtrar('todas')">Todas</button>
+            <button onclick="filtrar('Juli')">Juliana</button>
+            <button onclick="filtrar('Cris')">Cristian</button>
+            <button id="btn-oscuro">Modo Oscuro</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Imagen principal -->
+<!-- Reemplaza tu sección hero-container por esta -->
+<div class="hero-container">
+    <div class="hero-overlay"></div>
+    <img src="WhatsApp Image 2026-03-07 at 10.40.46.jpeg" alt="Destacada" class="img-hero" id="hero-parallax">
+    <div class="hero-text">
+        <h2 class="reveal-text">EXPLORA NUESTRA MIRADA</h2>
+        <div class="scroll-indicator"></div>
+    </div>
+</div>
+
+
+        <!-- Galería -->
+        <div class="galeria-container">
+            <div class="Juli"> 
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.38.58.jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.38.59 (1).jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.38.59.jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.39.00 (2).jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.39.00 (3).jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.39.00 (4).jpeg">
+                <img src="imgj/WhatsApp Image 2026-03-07 at 10.39.00.jpeg">
+		<img src="imgj\WhatsApp Image 2026-03-07 at 11.36.26.jpeg">
+		<img src="imgj\WhatsApp Image 2026-03-07 at 11.36.25.jpeg">
+            </div>
+
+            <div class="Cris">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 10.33.47 (1).jpeg">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 10.33.47 (2).jpeg">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 10.33.47 (3).jpeg">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 10.33.47.jpeg">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 10.33.48.jpeg">
+                <img src="imgc/WhatsApp Image 2026-03-07 at 11.49.42.jpeg">
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span id="cerrar">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoom">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Portafolio Fotográfico. Juliana & Cristian.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+
+Arreglos
+
+Se dividen en dos:
+
+	1. Vectores (Son de una sola dimensión)
+	2. Matrices (Son de varias dimensiones)
+
+Matriz
+Es un arreglo de dos dimensiones.
+El primer subíndice es para las filas y el segundo para las columnas.
+La primer fila y columna es la posición 0.

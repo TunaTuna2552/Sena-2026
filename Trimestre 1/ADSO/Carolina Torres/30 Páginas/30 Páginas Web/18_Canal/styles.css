@@ -1,0 +1,120 @@
+:root {
+    --fondo: #0f0f0f;
+    --texto: #ffffff;
+    --gris: #aaaaaa;
+    --rojo: #ff0000;
+}
+
+body {
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.portada {
+    height: 200px;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/001/881/228/non_2x/design-in-the-concept-of-electronic-circuit-boards-vector.jpg');
+    background-size: cover;
+    width: 100%;
+}
+
+.info-canal {
+    display: flex;
+    padding: 20px 8%;
+    align-items: center;
+    gap: 20px;
+}
+
+.foto-perfil {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+.datos h1 { margin: 0; font-size: 2rem; }
+.datos p { color: var(--gris); margin: 5px 0; }
+
+.boton-sub {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.pestanas {
+    border-bottom: 1px solid #333;
+    padding: 0 8%;
+    display: flex;
+    gap: 30px;
+}
+
+.pestanas button {
+    background: none;
+    border: none;
+    color: var(--gris);
+    padding: 15px 0;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.pestanas button.activo {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.rejilla-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px 8%;
+}
+
+.tarjeta-video img {
+    width: 100%;
+    border-radius: 12px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.tarjeta-video h3 { font-size: 1rem; margin: 10px 0 5px; }
+.tarjeta-video p { color: var(--gris); font-size: 0.9rem; margin: 0; }
+
+.reproductor-oscuro {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.contenedor-reproductor {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+#video-activo {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.cerrar-reproductor {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}

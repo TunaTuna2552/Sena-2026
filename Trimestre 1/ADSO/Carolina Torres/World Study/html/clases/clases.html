@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Study</title>
+    <link rel="stylesheet" href="../../css/clases.css">
+</head>
+<body>
+    <div class="web-container">
+        <nav class="barra-latera">
+            <div class="menu">
+                <a href="../chat/todos.html" class="icono"><img src="../../imagenes/chat.png"></a>
+                <div class="icono activo"><img src="../../imagenes/clases.avif"></div>
+                <div class="icono"><img src="../../imagenes/calendario.png"></div>
+                <div class="icono"><img src="../../imagenes/biblioteca.webp"></div>
+                <div class="icono"><img src="../../imagenes/actividades.png"></div>
+            </div>
+            <div class="avatar">
+                <svg viewBox="0 0 24 24" class="usuario"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
+            </div>
+        </nav>
+
+        <aside class="sidebar-clases">
+            <header class="encabezado"><h1>Hola Julian</h1><button class="agregar">+</button></header>
+            <hr class="division">
+            <main class="subject-list">
+                <input type="radio" id="m1" name="m-r" checked hidden><label for="m1" class="subject-item">Lenguaje</label>
+                <input type="radio" id="m2" name="m-r" hidden><label for="m2" class="subject-item">Física</label>
+                <input type="radio" id="m3" name="m-r" hidden><label for="m3" class="subject-item">Química</label>
+                <input type="radio" id="m4" name="m-r" hidden><label for="m4" class="subject-item">Inglés</label>
+                <input type="radio" id="m5" name="m-r" hidden><label for="m5" class="subject-item">Matemáticas</label>
+            </main>
+        </aside>
+
+        <section class="main-content">
+            <div class="column-resource">
+                <div class="col-seccion">Cuaderno</div>
+                <div class="search-bar-unified"><span class="search-orange">🔍</span><input type="text" placeholder="Buscar..."></div>
+                <div class="card-notebook hover-effect">
+                    <div class="notebook-filters">
+                        <div class="filter-group"><label>Fecha</label><input type="date" class="filter-input"></div>
+                        <div class="filter-group"><label>Tema</label><input type="text" placeholder="Tema" class="filter-input"></div>
+                    </div>
+                </div>
+                <button class="btn-blue-add">+</button>
+            </div>
+
+            <div class="column-resource">
+                <div class="col-seccion">Grabaciones</div>
+                <div class="search-bar-unified"><input type="text" placeholder="Buscar..."><span class="search-gray">🔍</span></div>
+                <div class="list-recordings">
+                    <div class="recording-pill">Grabación 1</div><div class="recording-pill">Grabación 2</div><div class="recording-pill">Grabación 3</div>
+                </div>
+            </div>
+
+            <div class="column-resource">
+                <div class="col-seccion">Imágenes</div>
+                <div class="image-gallery">
+                    <div class="img-square">🖼️</div><div class="img-square">🖼️</div>
+                    <div class="img-square">🖼️</div><div class="img-square">🖼️</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

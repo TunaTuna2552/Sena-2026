@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<div>
+    <h1>Calculadora</h1>
+    <br>
+
+    <div class="claculadoras">
+        <div class="invertir">
+            <h3>Invertir un número de 2 dígitos</h3>
+            <form id="formInvertir">
+                <label for="n">Número (10-99): </label>
+                <input type="number" id="n" min="10" max="99" required>
+
+                <button type="submit">Invertir</button>
+            </form>
+            <div class="resultado" id="resultado"></div>
+        </div>
+        <!----------------------------------------------------------------------------->
+
+        <div class="circulo">
+            <h3>Calcular el área de un círculo</h3>
+            <form id="areaCirculo">
+                <label for="radio">Radio en cm: </label>
+                <input type="number" id="radio" required>
+
+                <button type="submit">Calcular área</button>
+            </form>
+            <div class="resultado" id="resultado_2"></div>
+        </div>
+        <!----------------------------------------------------------------------------->
+
+        <div class="triangulo">
+            <h3>Calcular el área de un triángulo</h3>
+            <form id="areaTriangulo">
+                <label for="b">Base en cm: </label>
+                <input type="number" id="b" required>
+                <label for="h">Altura en cm: </label>
+                <input type="number" id="h" required>
+
+                <button type="submit">Calcular área</button>
+            </form>
+            <div class="resultado" id="resultado_3"></div>
+        </div>
+
+        <!----------------------------------------------------------------------------->
+    </div>
+
+    <script src="script.js"></script>
+    </body>
+
+</html>

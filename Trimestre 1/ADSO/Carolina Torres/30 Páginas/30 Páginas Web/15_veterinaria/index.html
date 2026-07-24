@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <h1>HUELLITAS FELICES</h1>
+            <p>Clínica veterinaria</p>
+        </div>
+
+        <div class="botones">
+            <button onclick="mostrarSeccion('inicio')">Inicio</button>
+            <button onclick="mostrarSeccion('registro')">Registro</button>
+            <button onclick="mostrarSeccion('agenda')">Agenda</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN INICIO -->
+        <section id="inicio" class="active">
+            <div class="card">
+                <h1>Bienvenido a nuestra <br> clínica veterinaria</h1>
+                <h2>Agenda tu cita en instantes</h2>
+            </div>
+        </section>
+
+        <!-- SECCIÓN REGISTRO -->
+        <section id="registro">
+            <div class="card">
+                <h2>Registro de Usuario</h2>
+                <form class="formulario">
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="email" placeholder="Correo electrónico">
+                    <input type="text" placeholder="Dirección">
+                    <input type="number" placeholder="Teléfono">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="submit" value="Registrar">
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN AGENDA -->
+        <section id="agenda">
+            <div class="card">
+                <h2>Agenda tu Cita</h2>
+                <form class="formulario">
+                    <select><option>Gato</option><option>Perro</option><option>Conejo</option></select>
+                    <select><option>Consulta</option><option>Vacunación</option><option>Odontología</option></select>
+                    <input type="date">
+                    <input type="time">
+                    <select><option>Bogotá</option><option>Mosquera</option><option>Medellín</option></select>
+                    <input type="submit" value="Agendar Ahora">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="izq">
+                <p><strong>Dirección:</strong> Kilómetro 7 Mosquera, Cundinamarca</p>
+                <p><strong>Contactos:</strong> 15462323</p>
+            </div>
+            <div class="der">
+                <h3>HUELLITAS FELICES</h3>
+                <p>Clínica veterinaria</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

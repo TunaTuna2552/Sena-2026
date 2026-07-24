@@ -1,0 +1,2 @@
+Linea de ejemplo para guardar
+{"nombre":"Cris","mail":"tunatuna@gmail.com","cargo":"Aprendiz"}

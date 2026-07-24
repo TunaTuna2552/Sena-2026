@@ -1,0 +1,3 @@
+PILAS
+
+    Son estructuras de datos que tienen la caracteristica de que el último elemento en entrar es el primero en salir.
