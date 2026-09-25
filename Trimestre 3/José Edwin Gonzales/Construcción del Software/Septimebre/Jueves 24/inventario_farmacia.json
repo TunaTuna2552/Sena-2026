@@ -1,0 +1,22 @@
+[
+    {
+        "codigo": "001",
+        "nombre": "Paracetamol",
+        "categoria": "Analgésico",
+        "laboratorio": "Genfar",
+        "precio_unitario": 5000.0,
+        "cantidad": 40,
+        "requiere_receta": "NO",
+        "lote": "123456789"
+    },
+    {
+        "codigo": "002",
+        "nombre": "Penicilina",
+        "categoria": "Antibiótico",
+        "laboratorio": "Bayer",
+        "precio_unitario": 12000.0,
+        "cantidad": 15,
+        "requiere_receta": "SI",
+        "lote": "987654321"
+    }
+]
